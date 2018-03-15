@@ -1,0 +1,7 @@
+#miR	TargetScan binding start	TargetScan binding end	miRanda binding start	miRanda binding end	score by miRanda	binding energy predicted by miRanda
+hsa-miR-223-5p	95	102	83	102	153.00	-12.91
+hsa-miR-6507-5p	80	86	63	87	157.00	-23.38
+hsa-miR-384	142	148	128	149	157.00	-11.93
+hsa-miR-6716-5p	354	360	342	361	144.00	-16.53
+hsa-miR-193a-5p	199	205	186	206	158.00	-22.29
+hsa-miR-155-5p	309	315	291	316	155.00	-16.50

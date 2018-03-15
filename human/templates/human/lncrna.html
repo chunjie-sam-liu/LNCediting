@@ -1,0 +1,10 @@
+{% extends "human/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="bs-docs-section">
+        {% include 'lncrna/chromosome_map.html' %}
+        {% include 'human/pagination.html' %}
+        {% include 'lncrna/result_table.html' %}
+        {% include 'human/pagination.html' %}
+    </div>
+{% endblock %}

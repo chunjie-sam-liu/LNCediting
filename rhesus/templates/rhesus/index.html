@@ -1,0 +1,70 @@
+{% extends "rhesus/base.html" %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="bs-docs-section" >
+          <h2 id="overview" class="page-header">Welcome&nbsp;<span ><img src="{% static 'rhesus/images/Macaca_mulatta.jpg'%}" alt="Macaca_mulatta" style="height: 50px;"></span></h2>
+          <p class="lead">RNA editing is a widespread post-transcriptional mechanism that can make discrete changes to specific nucleotide sequences within a RNA transcripts. RNA editing events can result in missense codon changes in mRNA, modulation of alternative splicing in mRNA, or modification of regulatory RNAs and their binding sites in small noncoding RNA, such as miRNA. Recent studies have developed computational methods to accurately detect more than 2 million A-to-I RNA editing from next-generation sequencing data in different species. However, the vast majority of these RNA sites are in noncoding regions of the genome and have unknown functional relevance. <span style="color: rgb(255,0,0)"><strong>LNCediting</strong></span> provides a comprehensive resource for the functional prediction of RNA editing in long noncoding RNAs (lncRNAs).</p>
+      </div>
+    <div class="bs-docs-section">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <div class="col-md-1"><strong>Citation:</strong></div>
+                <div class="col-md-11">
+                <a href="http://nar.oxfordjournals.org/content/early/2016/09/19/nar.gkw835.full?keytype=ref&ijkey=md3tl5z8V0R66D9" target="_blank"><strong>LNCediting: a database for functional effects of RNA editing in lncRNAs.</strong></a><br />
+                <span>Jing Gong<sup>&dagger;</sup>, Chunjie Liu<sup>&dagger;</sup>, Wei Liu, Yu Xiang, Lixia Diao, An-Yuan Guo<sup>&lowast;</sup> and Leng Han<sup>&lowast;</sup>.</span>
+                <span>Nucl. Acids Res. (2016). doi: 10.1093/nar/gkw835.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bs-docs-section">
+        <h2 id="overview" class="page-header">Species</h2>
+        <div class="row">
+                <a href="{% url 'human:index' %}">
+                    <div class="col-md-3">
+                        <div class="thumbnail" style="border:0;">
+                            <img src="{% static 'rhesus/images/Homo_sapiens.png'%}" alt="Homo_sapiens" style="height: 100px;display:block;">
+                        </div>
+                        <div class="caption">
+                            <p style="font-size:16px;text-align: center"><span style="font-style: italic">Homo sapiens</span> (Human)</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'rhesus:index' %}">
+                    <div class="col-md-3">
+                        <div class="thumbnail" style="border:0;">
+                            <img src="{% static 'rhesus/images/Macaca_mulatta.jpg'%}" alt="Macaca_mulatta" style="height: 100px;display:block;">
+                        </div>
+                        <div class="caption">
+                            <p style="font-size:16px;text-align: center"><span style="font-style: italic">Macaca mulatta</span> (Rhesus)</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'mouse:index' %}">
+                    <div class="col-md-3">
+                        <div class="thumbnail" style=";border:0;">
+                            <img src="{% static 'rhesus/images/Mus_musculus.jpg'%}" alt="Mus_musculus" style="height: 100px;display:block;">
+                        </div>
+                        <div class="caption">
+                            <p style="font-size:16px;text-align: center"><span style="font-style: italic">Mus musculus</span> (Mouse)</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'fly:index' %}">
+                    <div class="col-md-3">
+                        <div class="thumbnail" style="border:0;">
+                            <img src="{% static 'rhesus/images/Drosophila_melanogaster.jpg'%}" alt="Drosophila_melanogaster" style="height: 100px;display:block;">
+                        </div>
+                        <div class="caption">
+                            <p style="font-size:16px;text-align: center"><span style="font-style: italic">Drosophila melanogaster</span> (Fly)</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+    </div>
+    <div class="bs-docs-section">
+        <h2 class="page-header">Tools</h2>
+        {% include 'rhesus_tools/tools_main.html' %}
+    </div>
+{% endblock %}

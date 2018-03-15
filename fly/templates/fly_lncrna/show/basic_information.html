@@ -1,0 +1,61 @@
+{% load humanize %}
+<div class="bs-docs-section">
+    <div class="bs-callout bs-callout-info">
+    <h4 >Basic information for lncRNA: {{ lncrnaRecord.lncrna_id }}</h4>
+        <dl class="dl-horizontal">
+            <dt>lncRNA ID:</dt>
+            <dd>{{ lncrnaRecord.lncrna_id }}</dd>
+            <dt>Source:</dt>
+            <dd>{{ lncrnaRecord.combined_resource }}</dd>
+            <dt>Position:</dt>
+            <dd>{{ lncrnaRecord.chromosome }}:{{ lncrnaRecord.trans_start|intcomma }}{{ lncrnaRecord.trans_end|intcomma }} [{{ lncrnaRecord.strand}}]</dd>
+            <dt>Structure:</dt>
+            <dd><img alt="Structure Image" src="{% url 'fly:lncrnastructure' lncrnaid %}" /></dd>
+            <dt>Sequence:</dt>
+            <dd><a href="{% url 'fly:lncrnasequence' lncrnaid %}"><span class="glyphicon glyphicon-floppy-save"></span></a></dd>
+            <dt>Energy (kCal/mol):</dt>
+            <dd>
+                <table class="table table-bordered table-hover table-condensed" style="width:500px">
+                    <tr>
+                        <td class="text-center">Unedited
+                            <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="The energy of unedited sequence." data-trigger="hover" data-placement="bottom"></span>
+                        </td>
+                        <td class="text-center">All Edited
+                            <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content=" The energy of edited sequence, on which the bases of all editing sites in this lncRNA were changed from A&rarr;G." data-trigger="hover" data-placement="bottom"></span>
+                        </td>
+                        <td class="text-center">&Delta;Energy
+                            <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="&Delta;G_edited&nbsp;&minus;&nbsp;&Delta;G_unedited"  data-trigger="hover" data-placement="bottom"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">{{ lncrnaRecord.wild_energy }}</td>
+                        <td class="text-center">{{ lncrnaRecord.edit_energy }}</td>
+                        <td class="text-center">{{ lncrnaRecord.delta_energy }}</td>
+                    </tr>
+                </table>
+            </dd>
+            <dt>Statistics:</dt>
+            <dd>
+                <table class="table table-bordered table-hover table-condensed" style="width:500px">
+                    <tr>
+                        <td class="text-center">Editing Sites
+                            <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="The number of editing sites in this lncRNA."  data-trigger="hover" data-placement="bottom"></span>
+                        </td>
+                        <td class="text-center">Gain
+                            <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="The number of gains of miRNA targets."  data-trigger="hover" data-placement="bottom"></span>
+                        </td>
+                        <td class="text-center">Loss
+                            <span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="The number of losses of miRNA targets."  data-trigger="hover" data-placement="bottom"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">{{ lncrnaRecord.edit_num }}</td>
+                        <td class="text-center">{{ lncrnaGain|length }}</td>
+                        <td class="text-center">{{ lncrnaLoss|length }}</td>
+                    </tr>
+                </table>
+            </dd>
+        </dl>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1"><div class="modal-dialog"><div class="modal-content"></div></div></div>

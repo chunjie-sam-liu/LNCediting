@@ -1,0 +1,54 @@
+{% load staticfiles %}
+{% load humanize %}
+<div class="bs-docs-section">
+    <div class="bs-callout bs-callout-info">
+        <h4>lncRNA Transcripts</h4>
+        <p>In this module, we provide the information of <span class="badge alert-info">119</span> rhesus lncRNA transcripts. There are <span class="badge alert-danger">{{ total.count|intcomma }}</span> fly lncRNA transcripts on <span class="badge alert-success" id="chromosome-selected">{{ chromosome|default:"all chromosome" }}</span>.</p>
+
+        <div class="form-group has-success" style="margin-top: 20px; margin-bottom: 60px;">
+            <form accept-charset="UTF-8" action="{% url 'rhesus:lncrnachr'  %}" class="form form-horizontal" id="lncrna-filter-form" method="get">
+                {% csrf_token %}
+                <label class="control-label col-sm-2" for="chromosome">Select chromosome</label>
+                <div class="col-sm-2"><select class="form-control" id="chromosome" name="chromosome">
+			<option value="all_chromosome">all chromosome</option>
+			<option value="chr1">chr1</option>
+            <option value="chr2">chr2</option>
+            <option value="chr3">chr3</option>
+            <option value="chr4">chr4</option>
+            <option value="chr5">chr5</option>
+            <option value="chr6">chr6</option>
+            <option value="chr7">chr7</option>
+            <option value="chr8">chr8</option>
+            <option value="chr9">chr9</option>
+            <option value="chr10">chr10</option>
+            <option value="chr11">chr11</option>
+            <option value="chr12">chr12</option>
+            <option value="chr13">chr13</option>
+            <option value="chr14">chr14</option>
+            <option value="chr15">chr15</option>
+            <option value="chr16">chr16</option>
+            <option value="chr17">chr17</option>
+            <option value="chr18">chr18</option>
+            <option value="chr19">chr19</option>
+            <option value="chrX">chrX</option>
+            <option value="chrY">chrY</option></select></div>
+            </form>
+            <form class="form-horizontal" role="form" method="get" action="{% url 'rhesus:lncrna' %}">
+            {% csrf_token %}
+                <label class="control-label col-sm-2">lncRNA ID&nbsp;<span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="Input lncRNA ID 'NONMMLG000009.1'" data-trigger="hover" data-placement="bottom"></span>:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="term" value="{{ term|default:'NONMMLG000009.1' }}" placeholder="NONMMLG000009.1" pattern="[a-zA-Z0-9\.\-]*"/>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-success">Search lncRNA</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $('#chromosome').on('change', function () {
+        $('form#lncrna-filter-form').submit();
+    });
+    $("#chromosome").val("{{ chromosome|default:'all_chromosome' }}")
+</script>

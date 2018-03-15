@@ -1,0 +1,73 @@
+{% load humanize %}
+<div class="modal-header">
+    <button class="close" data-dismiss="modal" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4>Target {{ function|capfirst }} </h4>
+</div>
+<div class="modal-body">
+    <table class="table table-bordered table-hover table-condensed">
+        <tbody>
+            <tr>
+                <th>miRNA</th>
+                <td colspan="2"> <a href="{% url 'mouse:mirnashow' editingLoss.mirna_info_id %}">{{editingLoss.mirna_id}}</a></td>
+            </tr>
+            <tr>
+                <th>lncRNA</th>
+                <td colspan="2"><a href="{% url 'mouse:lncrnashow' editingRecord.lncrna_info_id %}">{{ editingLoss.lncrna_id }}</a></td>
+            </tr>
+            <tr>
+                <th>Editing Position</th>
+                <td colspan="2"><a href="{% url 'mouse:editingshow' editingid %}">{{ editingLoss.chromosome }}:{{ editingLoss.chr_edit_pos|intcomma  }}</a></td>
+            </tr>
+            <tr>
+                <th rowspan="2">TargetScan</th>
+                <td class="success">Start</td>
+                <td class="success">End</td>
+            </tr>
+            <tr>
+                <td>{{ editingLoss.targetscan_start_r|intcomma }}</td>
+                <td>{{ editingLoss.targetscan_end_r|intcomma }}</td>
+            </tr>
+            <tr>
+                <th rowspan="5">Miranda</th>
+                <td class="success">Start</td>
+                <td class="success">End</td>
+            </tr>
+            <tr>
+                <td>{{ editingLoss.miranda_start_r|intcomma }}</td>
+                <td>{{ editingLoss.miranda_end_r|intcomma }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>Score:</strong>
+                    {{ editingLoss.score }}
+                    <strong>Energy:</strong>
+                    {{ editingLoss.energy  }} kCal/mol
+                    <strong>Strand:</strong>
+                    {{ editingLncrna.strand }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Q: {{ editingLoss.query_start }} to {{ editingLoss.query_end }} R: {{ editingLoss.ref_start }} to {{ editingLoss.ref_end }} Align Len ({{ editingLoss.align_length }}) ({{ editingLoss.query_percentage }}%) ({{ editingLoss.ref_percentage }}%)</td>
+            </tr>
+            <tr class="warning">
+                <td class="sequence" colspan="4">miRNA:&nbsp;&nbsp;3'&nbsp;{{ editingLoss.query_match_sequence }}&nbsp;5'<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="match-string">{{ editingLoss.match_string }}</span><br>lncRNA:&nbsp;5'&nbsp;{{ editingLoss.ref_match_sequence }}&nbsp;3'</td>
+            </tr>
+            <script>
+                var matchString = "{{ editingLoss.match_string }}";
+                var editPosition = {{ editingLoss.ref_edit_pos }};
+                var lncRNAString = "{{ editingLoss.ref_match_sequence }}";
+                var minusNum = (lncRNAString.match(new RegExp("-","g"))||[]).length;
+
+
+                matchString = matchString.replace(/ /g, "\u00a0");
+                matchStringArray = matchString.split("");
+                matchStringArray[editPosition + minusNum- 1] = "<span class='text-danger'><strong>" + "x" + "</strong></span>";
+                matchString = matchStringArray.join("");
+                $("#match-string").html(matchString);
+            </script>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-info" data-dismiss="modal" type="button">Close</button>
+</div>

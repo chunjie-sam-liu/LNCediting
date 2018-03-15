@@ -1,0 +1,26 @@
+{% load humanize %}
+<div>
+    <ul class="pager" style="list-style-type: none">
+        <li style="float:left;"><a style="width:180px">Total records: {{ total.count|intcomma }}</a></li>
+
+        <li><a style="width: 100px;" href="{{ pagination.pageURL }}1">First</a></li>
+
+        <li {% if pagination.page == 1 %} class="disabled" {% endif %}><a style="width: 100px;" href="{% if pagination.page == 1 %}{{ pagination.pageURL }}1{% else %}{{ pagination.pageURL }}{{ pagination.page|add:"-1" }}{% endif %}">Previous</a></li>
+
+        <li {% if pagination.page == pagination.pages %} class="disabled" {% endif %}><a style="width: 100px;" href="{% if pagination.page == pagination.pages %}{{ pagination.pageURL }}{{ pagination.pages }}{% else %}{{ pagination.pageURL }}{{ pagination.page|add:"1" }}{% endif %}">Next</a></li>
+
+        <li ><a style="width: 100px; " href="{{ pagination.pageURL }}{{ pagination.pages }}">Last</a></li>
+
+        <li>
+            <select name="page" style="width: 100px;color:rgb(66,139,202);border:1px solid #ccc;border-radius: 15px;box-shadow:inset 0 1px 1px #ccc;padding: 5px 12px;" onchange="window.location='{{ pagination.pageURL }}' + this.value" >
+                {% for it in pagination.pageRange %}
+                    <option value="{{ it }}">{{ it }}</option>
+                {% endfor %}
+            </select>
+        </li>
+
+{#        <li style="float: right;"><a href="{% url 'human:queryset' title %}">Download</a></li>#}
+
+        <li style="float: right;"><a style="width: 100px;">Page: {{ pagination.page }}</a></li>
+    </ul>
+</div>

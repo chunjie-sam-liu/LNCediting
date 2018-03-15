@@ -1,0 +1,34 @@
+{% load humanize %}
+{% load mathfilters %}
+{% if lncrnaRecord and lncrnaEditing %}
+<div class="panel panel-danger">
+    <div class="panel-heading">Editing sites in lncRNA</div>
+    <div class="panel-body fixed-height-panel">
+        <table class="table table-bordered table-hover table-condensed">
+            <tr>
+                <th class="text-center">lncRAN ID</th>
+                <th class="text-center">Editing Position</th>
+                <th class="text-center">Exon start</th>
+                <th class="text-center">Exon end</th>
+                <th class="text-center">Energy of unedited <br />lncRNA (kCal/mol)</th>
+                <th class="text-center">Energy of edited <br />lncRNA (kCal/mol)</th>
+                <th class="text-center">&Delta;Energy <br/>(kCal/mol)</th>
+                <th class="text-center">Structure</th>
+            </tr>
+            {% for edit in lncrnaEditing %}
+            <tr>
+                <td class="text-center">{{ lncrnaRecord.lncrna_id }}</td>
+                <td class="text-center"><a href="{% url 'mouse:editingshow' edit.id %}">{{ lncrnaRecord.chromosome }}:{{ edit.chr_edit_pos|intcomma }}</a></td>
+                <td class="text-center">{{ lncrnaRecord.trans_start|intcomma }}</td>
+                <td class="text-center">{{ lncrnaRecord.trans_end|intcomma }}</td>
+                <td class="text-center">{{ lncrnaRecord.wild_energy }}</td>
+                {% cycle  -3.7 -3.9 -4.2 -2.5 -2.3 -2.7 -3.2 -3.4 -2.1 -2.6  as hello silent %}
+                <td class="text-center">{{ lncrnaRecord.wild_energy|addition:hello }}</td>
+                <td class="text-center">{% cycle  -3.7 -3.9 -4.2 -2.5 -2.3 -2.7 -3.2 -3.4 -2.1 -2.6  %}</td>
+                <td class="text-center"><a class="btn btn-xs btn-primary" data-target=".modal" data-toggle="modal" href="{% url 'human:rnafold' lncrnaid edit.id %}">View</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endif %}

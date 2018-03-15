@@ -1,0 +1,30 @@
+<div>
+    <table class="table table-bordered table-striped table-hover table-condensed tablesorter tablesorter-bootstrap">
+        <thead>
+            <tr>
+                <th>miRNA ID</th>
+                <th>Accession</th>
+                <th>pre-miRNA</th>
+                <th>Chromosome</th>
+                <th>Strand</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Matrue Sequence</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mirna in select %}
+            <tr>
+            <td><a href="{% url 'mouse:mirnashow'  mirna.id%} ">{{ mirna.mirna_id }}</a></td>
+            <td><a href="http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc={{ mirna.accession }}">{{ mirna.accession }}</a></td>
+            <td>{{ mirna.pre_mirna_id }}</td>
+            <td>{{ mirna.chromosome }}</td>
+            <td>{{ mirna.strand }}</td>
+            <td>{{ mirna.start }}</td>
+            <td>{{ mirna.end }}</td>
+            <td>{{ mirna.mature_sequence }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

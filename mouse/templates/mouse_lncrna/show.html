@@ -1,0 +1,8 @@
+{% extends "mouse/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    {% include 'mouse_lncrna/show/basic_information.html' %}
+    {% include 'mouse_lncrna/show/lncrna_editing.html' %}
+    {% include 'mouse_lncrna/show/lncrna_gain.html' %}
+    {% include 'mouse_lncrna/show/lncrna_loss.html' %}
+{% endblock %}

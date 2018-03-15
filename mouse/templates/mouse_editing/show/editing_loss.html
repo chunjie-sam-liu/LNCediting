@@ -1,0 +1,40 @@
+{% load humanize %}
+{% if editingLoss %}
+<div class="bs-docs-section">
+<div class="panel panel-primary">
+    <div class="panel-heading">Editing causes miRNA:lncRNA Loss</div>
+    <div class="panel-body">
+        <table class="table table-bordered table-hover table-condensed">
+            <tr>
+                <th class="text-center">miRNA ID</th>
+                <th class="text-center">lncRNA ID</th>
+                <th class="text-center">Chromosome</th>
+                <th class="text-center">Editing Position</th>
+                <th class="text-center">Score</th>
+                <th class="text-center">Energy<br />(KCal/Mol)</th>
+                <th class="text-center">Binding Start<br />(TargetScan)</th>
+                <th class="text-center">Binding End<br />(TargetScan)</th>
+                <th class="text-center">Binding Start<br />(miRanda)</th>
+                <th class="text-center">Binding End<br />(miRanda)</th>
+                <th class="text-center"></th>
+            </tr>
+            {% for loss in editingLoss %}
+            <tr>
+                <td> <a href="{% url 'mouse:mirnashow' loss.mirna_info_id %}">{{ loss.mirna_id }}</a></td>
+                <td><a href="{% url 'mouse:lncrnashow' editingLncrna.id %}">{{ loss.lncrna_id }}</a></td>
+                <td>{{ loss.chromosome }}</td>
+                <td>{{ loss.chr_edit_pos|intcomma }}</td>
+                <td>{{ loss.score }}</td>
+                <td>{{ loss.energy }}</td>
+                <td>{{ loss.targetscan_start_r|intcomma }}</td>
+                <td>{{ loss.targetscan_end_r|intcomma }}</td>
+                <td>{{ loss.miranda_start_r|intcomma }}</td>
+                <td>{{ loss.miranda_end_r|intcomma }}</td>
+                <td><a class="btn btn-xs btn-primary" data-target=".modal" data-toggle="modal" href="{% url 'mouse:functiongainloss' 'loss' editingid loss.mirna_info_id%}"> View</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+</div>
+{% endif %}

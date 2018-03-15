@@ -1,0 +1,54 @@
+{% load humanize %}
+{% if mirnaGain %}
+<div class="panel panel-danger">
+    <div class="panel-heading">Target Gain</div>
+    <div class="panel-body fixed-height-panel">
+        <table class="table table-bordered table-striped table-hover table-condensed">
+            <thead>
+                <tr class="tablesorter-headerRow">
+                    <th>lncRNA</th>
+                    <th>miRNA</th>
+                    <th>Editing Position</th>
+                    <th>Interaction</th>
+                    <th>Binding Start</th>
+                    <th>Binding End</th>
+                    <th>Energy (kCal/Mol)</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for gain in mirnaGain %}
+                    <tr>
+                        <td id="lncran-ID-{{ gain.id }}" >{{ gain.lncrna_id}}</td>
+                        <script type="text/javascript">
+                            var lncrnaID = '{{ gain.lncrna_id }}';
+                            var lncrnaIDs = lncrnaID.split("/");
+                            $(document).ready($("#lncrna-ID-{{ gain.id  }}").text(lncrnaIDs[0]));
+                        </script>
+                        <td>{{ gain.mirna_id }}</td>
+                        <td><a href="{% url 'mouse:editingshow' gain.edit_site_info_id %}">{{ gain.chromosome }}:{{ gain.chr_edit_pos }}</a></td>
+{#                        <td class="sequence">Q:&nbsp;3'&nbsp;{{ gain.query_match_sequence }}&nbsp;5'<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="match-string">{{ gain.match_string }}</span><br>R:&nbsp;5'&nbsp;{{ gain.ref_match_sequence }}&nbsp;3'</td>#}
+                        <td class="sequence">miRNA:&nbsp;&nbsp;3'&nbsp;{{ gain.query_match_sequence }}&nbsp;5'<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="match-string-{{ gain.id }}">{{ gain.match_string }}</span><br>lncRNA:&nbsp;5'&nbsp;{{ gain.ref_match_sequence }}&nbsp;3'<</td>
+                        <script>
+                            var matchString = "{{ gain.match_string }}";
+                            var editPosition = {{ gain.ref_edit_pos }};
+                            var lncRNAString = "{{ gain.ref_match_sequence }}";
+                            var minusNum = (lncRNAString.match(new RegExp("-","g"))||[]).length;
+
+                            matchString = matchString.replace(/ /g, "\u00a0");
+                            matchStringArray = matchString.split("");
+                            matchStringArray[editPosition +minusNum- 1] = "<span class='text-danger'><strong>" + "|" + "</strong></span>";
+                            matchString = matchStringArray.join("");
+                            $("#match-string-{{ gain.id }}").html(matchString);
+                        </script>
+                        <td>{{ gain.miranda_start_r|intcomma }}</td>
+                        <td>{{ gain.miranda_end_r|intcomma }}</td>
+                        <td>{{ gain.energy }}</td>
+                        <td>{{ gain.score }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}

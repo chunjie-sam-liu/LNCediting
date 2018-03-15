@@ -1,0 +1,7 @@
+{% extends "rhesus/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    {% include 'rhesus_mirna/show/basic_information.html' %}
+    {% include 'rhesus_mirna/show/mirna_gain.html' %}
+    {% include 'rhesus_mirna/show/mirna_loss.html' %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load humanize %}
+<div class="bs-docs-section">
+    <div class="bs-callout bs-callout-info">
+    <h4>Basic information of miRNA</h4>
+        <dl class="dl-horizontal">
+            <dt>miRNA:</dt>
+            <dd><a href="http://mirbase.org/cgi-bin/mature.pl?mature_acc={{ mirnaInfo.accession }}" target="_blank">{{ mirnaInfo.mirna_id }}</a></dd>
+            <dt>Accession:</dt>
+            <dd><a href="http://mirbase.org/cgi-bin/mature.pl?mature_acc={{ mirnaInfo.accession }}" target="_blank">{{ mirnaInfo.accession }}</a></dd>
+            <dt>Coordinates:</dt>
+            <dd>{{ mirnaInfo.chromosome }}:{{ mirnaInfo.start }}-{{ mirnaInfo.end }}[{{ mirnaInfo.strand }}]</dd>
+            <dt>Mature Sequence:</dt>
+            <dd>{{ mirnaInfo.mature_sequence }}</dd>
+            <dt>Precursor:</dt>
+            <dd>{{ mirnaInfo.pre_mirna_id }}</dd>
+            <dt>Pre-miR Coordinates:</dt>
+            <dd>{{ mirnaInfo.chromosome }}:{{ mirnaInfo.pre_start }}-{{ mirnaInfo.pre_end }}[{{ mirnaInfo.strand }}]</dd>
+            <dt>Pre-miR sequence</dt>
+            <dd>{{ mirnaInfo.pre_sequence }}</dd>
+        </dl>
+    </div>
+</div>

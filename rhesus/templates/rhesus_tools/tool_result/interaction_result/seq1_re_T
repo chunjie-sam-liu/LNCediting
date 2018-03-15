@@ -1,0 +1,18 @@
+a_Gene_ID	miRNA_family_ID	species_ID	MSA_start	MSA_end	UTR_start	UTR_end	Group_num	Site_type	miRNA in this species	Group_type	Species_in_this_group	Species_in_this_group_with_this_site_type
+SEQ1	mml-miR-100-3p	9606	305	311	305	311	1	7mer-m8	x	7mer-m8	9606
+SEQ1	mml-miR-103-3p	9606	29	35	29	35	2	7mer-1a	x	7mer-1a	9606
+SEQ1	mml-miR-107-3p	9606	29	35	29	35	3	7mer-1a	x	7mer-1a	9606
+SEQ1	mml-miR-124a-5p	9606	275	281	275	281	4	7mer-1a	x	7mer-1a	9606
+SEQ1	mml-miR-1262-3p	9606	285	291	285	291	5	7mer-1a	x	7mer-1a	9606
+SEQ1	mml-miR-138-3p	9606	276	282	276	282	6	7mer-m8	x	7mer-m8	9606
+SEQ1	mml-miR-224-5p	9606	253	259	253	259	7	7mer-1a	x	7mer-1a	9606
+SEQ1	mml-miR-301a-5p	9606	318	324	318	324	8	7mer-m8	x	7mer-m8	9606
+SEQ1	mml-miR-382-3p	9606	236	242	236	242	9	7mer-m8	x	7mer-m8	9606
+SEQ1	mml-miR-421	9606	169	175	169	175	10	7mer-1a	x	7mer-1a	9606
+SEQ1	mml-miR-487b-5p	9606	265	271	265	271	11	7mer-1a	x	7mer-1a	9606
+SEQ1	mml-miR-513b	9606	274	280	274	280	12	7mer-1a	x	7mer-1a	9606
+SEQ1	mml-miR-590-3p	9606	258	264	258	264	13	7mer-m8	x	7mer-m8	9606
+SEQ1	mml-miR-643	9606	303	309	303	309	14	7mer-m8	x	7mer-m8	9606
+SEQ1	mml-miR-7164-5p	9606	195	201	195	201	15	7mer-m8	x	7mer-m8	9606
+SEQ1	mml-miR-7195-5p	9606	249	255	249	255	16	7mer-1a	x	7mer-1a	9606
+SEQ1	mml-miR-875-5p	9606	223	229	223	229	17	7mer-1a	x	7mer-1a	9606

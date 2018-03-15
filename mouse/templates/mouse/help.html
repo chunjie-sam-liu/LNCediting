@@ -1,0 +1,184 @@
+{% extends "mouse/base.html" %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="bs-docs-section">
+    <div class="row">
+        <div class="col-md-9" role="main">
+            <div class="bs-docs-section">
+                <h3 class="page-header" id="what">What is LNCediting? </h3>
+                <p style="text-align: justify">LNCediting is a database to provide a comprehensive resource for the functional prediction of RNA editing in long non-coding RNAs (lncRNAs) across four species, including human, mouse, rhesus and fly.  It contains editing sites in lncRNAs, structure change by editing and the binding sites of lncRNA:miRNA which may be impacted by editing sites. In total, we identified 195,907 RNA editing sites in four lncRNA transcripts and found thousands of editing sites which greatly impact the secondary structure of lncRNA and the binding of miRNA-lncRNA. Currently, users can:</p>
+                <div  class="bs-callout bs-callout-info">
+                    <ul>
+                        <li>Browse or search the editing sites in lncRNAs;</li>
+                        <li>Browse or search the impacts of the editing sites on RNA secondary structure;</li>
+                        <li>Browse or search the editing sites impacting the interaction of miRNA:lncRNA (loss or gain);</li>
+                        <li>Browse or search miRNA expression data to prioritize functional editing sites;</li>
+                        <li>Predict the function of customized editing sites in lncRNAs</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bs-docs-section">
+                <h3 class="page-header" id="source-tool">Data sources and tools</h3>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th width="200">Data</th>
+                            <th width="300">Source</th>
+                            <th>URL</th>
+                        </tr>
+                        <tr>
+                            <td>lncRNA (human)</td>
+                            <td>LNCat(Collection of 13 resources)</td>
+                            <td><a href="http://biocc.hrbmu.edu.cn/LNCat/">http://biocc.hrbmu.edu.cn/LNCat/</a></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">lncRNA (mouse)</td>
+                            <td>NONCODE(2016)</td>
+                            <td><a href="http://www.noncode.org/">http://www.noncode.org/</a></td>
+                        </tr>
+                        <tr>
+                            <td>GENCODE</td>
+                            <td><a href="http://www.gencodegenes.org/">http://www.gencodegenes.org/</a></td>
+                        </tr>
+                        <tr>
+                            <td>lncRNA (rhesus, fly)</td>
+                            <td>NONCODE(2016)</td>
+                            <td><a href="http://www.noncode.org/">http://www.noncode.org/</a></td>
+                        </tr>
+                        <tr>
+                            <td>Editing (human, mouse, fly)</td>
+                            <td>RADAR</td>
+                            <td><a href="http://rnaedit.com/">http://rnaedit.com/</a></td>
+                        </tr>
+                        <tr>
+                            <td>Editing (rhesus)</td>
+                            <td>"RNA Editome in Rhesus Macaque Shaped by Purifying Section"</td>
+                            <td><a href="http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004274">http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004274</a></td>
+                        </tr>
+                        <tr>
+                            <td>miRNA</td>
+                            <td>miRBase(v21)</td>
+                            <td><a href="http://www.mirbase.org/ftp.shtml">http://www.mirbase.org/ftp.shtml</a></td>
+                        </tr>
+                        <tr>
+                            <td>Genome sequences</td>
+                            <td>UCSC</td>
+                            <td><a href="http://genome.ucsc.edu/ ">http://genome.ucsc.edu/ /</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <tbody >
+                        <tr>
+                            <th width="200">Tool</th>
+                            <th width="300">Usage</th>
+                            <th>URL</th>
+                        </tr>
+                        <tr>
+                            <td >miRanda</td>
+                            <td>miRNA target prediction</td>
+                            <td><a href="http://www.microrna.org/microrna/getDownloads.do">http://www.microrna.org/microrna/getDownloads.do</a></td>
+                        </tr>
+                        <tr>
+                            <td>TargetScan</td>
+                            <td>miRNA target prediction</td>
+                            <td><a href="http://www.targetscan.org/">http://www.targetscan.org/</a></td>
+                        </tr>
+                        <tr>
+                            <td>RNAfold</td>
+                            <td>Energy prediction</td>
+                            <td><a href="http://rna.tbi.univie.ac.at/cgi-bin/RNAfold.cgi">http://rna.tbi.univie.ac.at/cgi-bin/RNAfold.cgi</a></td>
+                        </tr>
+                        <tr>
+                            <td>Liftover</td>
+                            <td>Convert genome coordinates</td>
+                            <td><a href="http://genome.ucsc.edu/cgi-bin/hgLiftOve">http://genome.ucsc.edu/cgi-bin/hgLiftOve</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="bs-docs-section">
+                <h3 class="page-header" id="pipeline">Pipeline to construct LNCediting</h3>
+                <h4 id="editing-site">Editing sites in lncRNAs</h4>
+                <p style="text-align: justify">Human lncRNA annotation (hg19) was downloaded from <a href="http://biocc.hrbmu.edu.cn/LNCat/" target="_blank">LNCat</a>, which is a comprehensive annotation resources for human lncRNAs and has collected lncRNA transcripts from 13 resources, including three widely used lncRNA databases (GENCODE, NONCODE and LNCipedia) and 10 individual studies (CABILI, HANGAUER, HE, IYER, KELLEY, KRETZ, PARALKAR, TRIMARCHI, WHITE and YANG. Details please refer to “A comprehensive overview of lncRNA annotation resources”).  Mouse lncRNA annotation was downloaded from NONCODE (mm10) and GENECODE (mm10), while the lncRNA annotations of rhesus and fly were downloaded from NONCODE.</p>
+                <p style="text-align: justify">The editing sites of human, mouse and fly were downloaded from <a href="http://rnaedit.com/ " target="_blank">RADAR</a>, while the editing sites of the rhesus was obtained from the study of “RNA Editome in Rhesus Macaque Shaped by Purifying Selection”. There are 2576459, 8823, 31250 and 5025 editing sites of human (hg19), mouse (mm9), rhesus (mac2) and fly (dm3), respectively. By using the UCSC liftover tool, we transferred the coordinates of editing sites to mouse (mm10) rhesus (mac3) and fly (dm6), respectively. Then, the coordinates of the editing sites were mapped to that of lncRNA exons and we recorded the editing sites in lncRNAs.</p>
+                <table class="table table-bordered">
+                    <tr>
+                        <td></td>
+                        <td>Human</td>
+                        <td>Mouse</td>
+                        <td>Rhesus</td>
+                        <td>Fly</td>
+                    </tr>
+                    <tr>
+                        <td>The number of editing sites (transferred)</td>
+                        <td>2576459 (hg19)</td>
+                        <td>8822 (mm10)</td>
+                        <td>26861 (mac3)</td>
+                        <td>5025 (dm6)</td>
+                    </tr>
+                    <tr>
+                        <td>The number of LncRNAs</td>
+                        <td>301896</td>
+                        <td>59574</td>
+                        <td>15450</td>
+                        <td>68706</td>
+                    </tr>
+                    <tr>
+                        <td>Editing sites in lncRNA exons</td>
+                        <td>191991</td>
+                        <td>1922</td>
+                        <td>165</td>
+                        <td>1829</td>
+                    </tr>
+                </table>
+                <h4 id="secondary-structure">Editing sites impact on lncRNA secondary structures</h4>
+                <p style="text-align: justify">According to the lncRNA transcript annotation, we extracted lncRNA transcript sequences from human/mouse/rhesus/fly reference genome file as unedited-type transcripts. For each editing site, we changed the corresponding editing base from A->G as edited-type transcript. Then, RNAfold program was used to illustrate the secondary structure and calculate the minimal free energy (MFE, ΔG). Energy change of RNA structures (ΔΔG) was calculated by the MFE differences using ΔΔG = ΔGedited－ΔGunedited, where ΔGunedited and ΔGedited are the MFEs of the unedited-type transcript and edited-type transcript, respectively.</p>
+                <h4 id="gain-loss">miRNA:lncRNA gain/loss of function</h4>
+                <p style="text-align: justify">The miRNA mature sequences were downloaded from miRBase. The TargetScan and miRanda were used to predict the miRNA binding sites on unedited-type lncRNAs (UT) and edited-type lncRNAs (ET), which result in four groups of target datasets, which are TU (TargetScan predicted targets on UT sequence), MU (miRanda predicted targets on UT sequence), TE (TargetScan predicted targets on ET sequence), and ME (miRanda predicted targets on ET sequence). The miRNA–lncRNA interactions that exist in both TU and MU, but in neither TE nor ME, were defined as interaction losses (Loss= (TU and MU) - (TE or ME)). On the contrary, the miRNA–lncRNA interactions that exist in both TE and ME, but in neither TU nor MU, were defined as interaction gains (Gain= (TE and ME) - (TU or MU)).</p>
+                <h4 id="expression">miRNA expression</h4>
+                <p style="text-align: justify">In human module, we provided miRNA expression data to help users to prioritize the results. The miRNA expression data of different cancers were downloaded from <a href="https://tcga-data.nci.nih.gov/tcga/findArchives.htm" target="_blank">TCGA</a>. We calculated the average expression of each miRNA in every tissue based on TCGA miRNA-seq level 3 normalized data.</p>
+            </div>
+            <div class="bs-docs-section">
+                <h3 class="page-header" id="usage">Website usage</h3>
+                <h4 id="homepage">Homepage</h4>
+                <p style="text-align: justify">We provide the information of four species, including human, rhesus, mouse and fly. Click the photo of homo sapiens, you will go to the human sub-website. Then you can browse the editing, lncRNA and miRNA sections.  By clicking the photo of “LNCediting”, You will come back to the homepage.</p>
+                <span class="thumbnail" ><img src="{% static 'human/images/homepage-introduction.jpg'  %}" ></span>
+                <h4 id="editing-page">Editing section</h4>
+                <p style="text-align: justify">The editing section stored all the editing sites in lncRNAs as well as their detailed information. Data in this section include: (i) basic information of the editing sites; (ii) editing impacts on lncRNA secondary structure; (iii) editing impacts on miRNA–lncRNA interaction. We set two options to optimize the results. The first is the ‘Position’ option allowing users to query editing sites in a user-defined chromosome region. The second is the ‘Source’ option helping users to filter results by limiting the source of lncRNA. </p>
+                <h4 id="mirna-page">miRNA section</h4>
+                <p style="text-align: justify">The miRNA section enables users to select interested miRNAs by expression to obtain their targeting lncRNAs and possible gain/loss target of lncRNAs. In this section (human only), the miRNAs have been classified into four categories according to their expressions. They were high expressed miRNA group (RPM ≥ 1000), middle expressed miRNA group (10 ≤ = RPM < 1000), low expressed miRNA group (1 ≤ RPM < 10) and unexpressed miRNA group (RPM < 1). For each human miRNA, we also provide the expression levels in 28 cancer types in the ‘basic information of miRNA’ part.</p>
+                <h4 id="online-tool">Online tools</h4>
+                <p style="text-align: justify">Online tools enable users to input lncRNA sequence and the position of the novel editing site, then the secondary structure of unediting-sequence and editing-sequence will be plotted and the miRNA binding sites will be displayed.</p>
+            </div>
+        </div>
+        <div class="col-md-3" role="complementary">
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
+                <ul class="nav bs-docs-sidenav">
+                    <li ><a href="#what">What is LNCediting</a></li>
+                    <li><a href="#source-tool">Data sources and tools</a></li>
+                    <li>
+                        <a href="#pipeline">Pipeline</a>
+                        <ul class="nav">
+                            <li><a href="#editing-site">Editing sites in lncRNAs</a></li>
+                            <li><a href="#secondary-structure">Editing sites impact on lncRNA secondary structures</a></li>
+                            <li><a href="#gain-loss">miRNA:lncRNA gain/loss of function</a></li>
+                            <li><a href="#expression">miRNA expression</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#usage">Website usage</a>
+                        <ul class="nav">
+                            <li><a href="#homepage">Homepage</a></li>
+                            <li><a href="#editing-page">Editing section</a></li>
+                            <li><a href="#mirna-page">miRNA section</a></li>
+                            <li><a href="#online-tool">Online tools</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    </div>
+{% endblock %}

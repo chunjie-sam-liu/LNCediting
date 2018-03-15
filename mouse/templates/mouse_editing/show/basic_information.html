@@ -1,0 +1,31 @@
+{% load humanize %}
+<div class="bs-docs-section">
+    <div class="bs-callout bs-callout-info">
+        <h4 >Basic information of Editing: {{ editingRecord.chromosome }}:{{ editingRecord.chr_edit_pos|intcomma }}</h4>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Editing Position:</dt>
+                <dd>{{ editingRecord.chromosome }}:{{ editingRecord.chr_edit_pos|intcomma }}</dd>
+				{% if rep_cons %}
+				<dt>Repeat:</dt>
+				<dd>
+					{% if rep_cons.repeat %}
+					<span class="glyphicon glyphicon-ok glyphicon-color"></span>
+					{% else %}
+					<span class="glyphicon glyphicon-remove glyphicon-color"></span>
+					{% endif %}
+				</dd>
+				<dt>Conservation:</dt>
+				<dd>
+					{% if rep_cons.human %}
+						Human:&nbsp;&nbsp;{{ rep_cons.human }}
+					{% else %}
+					<span class="glyphicon glyphicon-remove glyphicon-color"></span>
+					{% endif %}
+				</dd>
+				{% endif %}
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1"><div class="modal-dialog"><div class="modal-content"></div></div></div>

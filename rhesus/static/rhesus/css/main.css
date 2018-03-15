@@ -1,0 +1,55 @@
+.sequence{
+    font-family:Consolas, "Lucida Console", monospace;
+}
+.fixed-height-panel{
+    overflow-y:auto;
+    max-height: 500px;
+}
+nav#bs-navbar ul.navbar-nav li{
+    font-size:20px;
+}
+a.navbar-brand{
+    font-size:24px;
+}
+div.bs-docs-section p.lead{
+    font-size: 16px;
+    text-align: justify;
+}
+div.expression{
+    height:20px;
+    width:10px;
+    margin:0 1px;
+    float:left;
+}
+div.bs-callout-info h4{
+    color:green;
+}
+div.bs-callout-info dl dd table td{
+    width:100px;
+}
+div.bs-callout-info dl dd {
+    word-wrap:break-word;
+    word-break:break-all;
+}
+span.glyphicon-question-sign{
+    margin: 0 3px;
+    padding: 2px;
+    background-color: purple;
+    color:white;
+}
+footer.bs-docs-footer{
+    padding:20px 0;
+    margin-top:30px;
+}
+address{
+    padding: 20px 10px;
+}
+div.address{
+    padding: 30px 10px;
+}
+h2.page-header{
+    margin: 20px 0;
+}
+div.bs-docs-section{
+    margin-bottom:20px;
+}

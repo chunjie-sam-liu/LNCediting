@@ -1,0 +1,34 @@
+{% load staticfiles %}
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="{% url 'mouse:index' %}">
+                <span>LNCediting<span style="color:blue;">-Mouse</span></span>
+
+        </a>
+    </div>
+    <nav class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="nav navbar-nav" >
+                <li><a href="{% url 'mouse:editing' %}">Editing</a></li>
+                <li ><a href="{% url 'mouse:lncrna' %}">lncRNA</a></li>
+                <li><a href="{% url 'mouse:mirna' %}">miRNA</a></li>
+                <li ><a href="{% url 'mouse:download' %}">Download</a></li>
+                <li><a href="{% url 'mouse:help' %}">Help</a></li>
+                <li><a href="{% url 'mouse:contact' %}">Contact</a></li>
+            </ul>
+{#              <a href="{% url 'human:index' %}" class="btn btn-danger" style="margin-top: 9px; ">Human</a>#}
+            <form class="navbar-form navbar-right" role="search" action="{% url 'mouse:quicksearch' %}" method="get" >
+                {% csrf_token %}
+                <div>
+                    <input type="text" class="form-control" placeholder="search" value="{{ term|default:'Gm24119' }}" name="term" pattern="[a-zA-Z0-9\.\-]*">
+                    <button type="submit" class="btn btn-default">Search Mouse</button>
+                </div>
+            </form>
+    </nav>
+</header>

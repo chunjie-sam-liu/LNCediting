@@ -1,0 +1,7 @@
+{% extends "mouse/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    {% include 'mouse_mirna/show/basic_information.html' %}
+    {% include 'mouse_mirna/show/mirna_gain.html' %}
+    {% include 'mouse_mirna/show/mirna_loss.html' %}
+{% endblock %}

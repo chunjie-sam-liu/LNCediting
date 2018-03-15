@@ -1,0 +1,73 @@
+{% load humanize %}
+
+<div class="modal-header">
+    <button class="close" data-dismiss="modal" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4>Target {{ function|capfirst }}</h4>
+</div>
+<div class="modal-body">
+    <table class="table table-bordered table-hover table-condensed">
+        <tbody>
+            <tr>
+                <th>miRNA</th>
+                <td colspan="2"> <a href="{% url 'human:mirnashow' editingGain.mirna_info_id %}">{{editingGain.mirna_id}}</a></td>
+            </tr>
+            <tr>
+                <th>lncRNA</th>
+                <td colspan="2"><a href="{% url 'human:lncrnashow' editingRecord.lncrna_info_id %}">{{ editingGain.lncrna_id }}</a></td>
+            </tr>
+            <tr>
+                <th>Editing Position</th>
+                <td colspan="2"><a href="{% url 'human:editingshow' editingid %}">{{ editingGain.chromosome }}:{{ editingGain.chr_edit_pos|intcomma  }}</a></td>
+            </tr>
+            <tr>
+                <th rowspan="2">TargetScan</th>
+                <td class="success">Start</td>
+                <td class="success">End</td>
+            </tr>
+            <tr>
+                <td>{{ editingGain.targetscan_start_r|intcomma }}</td>
+                <td>{{ editingGain.targetscan_end_r|intcomma }}</td>
+            </tr>
+            <tr>
+                <th rowspan="5">Miranda</th>
+                <td class="success">Start</td>
+                <td class="success">End</td>
+            </tr>
+            <tr>
+                <td>{{ editingGain.miranda_start_r|intcomma }}</td>
+                <td>{{ editingGain.miranda_end_r|intcomma }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>Score:</strong>
+                    {{ editingGain.score }}
+                    <strong>Energy:</strong>
+                    {{ editingGain.energy  }} kCal/mol
+                    <strong>Strand:</strong>
+                    {{ editingLncrna.strand }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Q: {{ editingGain.query_start }} to {{ editingGain.query_end }} R: {{ editingGain.ref_start }} to {{ editingGain.ref_end }} Align Len ({{ editingGain.align_length }}) ({{ editingGain.query_percentage }}%) ({{ editingGain.ref_percentage }}%)</td>
+            </tr>
+            <tr class="warning">
+                <td class="sequence" colspan="4">miRNA:&nbsp;&nbsp;3'&nbsp;{{ editingGain.query_match_sequence }}&nbsp;5'<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="match-string">{{ editingGain.match_string }}</span><br>lncRNA:&nbsp;5'&nbsp;{{ editingGain.ref_match_sequence }}&nbsp;3'</td>
+            </tr>
+            <script>
+                var matchString = "{{ editingGain.match_string }}";
+                var editPosition = {{ editingGain.ref_edit_pos }};
+                var lncRNAString = "{{ editingGain.ref_match_sequence }}";
+                var minusNum = (lncRNAString.match(new RegExp("-","g"))||[]).length;
+
+                matchString = matchString.replace(/ /g, "\u00a0");
+                matchStringArray = matchString.split("");
+                matchStringArray[editPosition + minusNum - 1] = "<span class='text-danger'><strong>" + "|" + "</strong></span>";
+                matchString = matchStringArray.join("");
+                $("#match-string").html(matchString);
+            </script>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-info" data-dismiss="modal" type="button">Close</button>
+</div>

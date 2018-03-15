@@ -1,0 +1,53 @@
+{% load humanize %}
+{% if mirnaLoss %}
+<div class="panel panel-success">
+    <div class="panel-heading">Target loss</div>
+    <div class="panel-body fixed-height-panel">
+        <table class="table table-bordered table-striped table-hover table-condensed">
+            <thead>
+                <tr class="tablesorter-headerRow">
+                    <th>lncRNA</th>
+                    <th>miRNA</th>
+                    <th>Editing Position</th>
+                    <th>Interaction</th>
+                    <th>Binding Start</th>
+                    <th>Binding End</th>
+                    <th>Energy (kCal/Mol)</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for loss in mirnaLoss %}
+                    <tr>
+                        <td id="lncran-ID-{{ loss.id }}">{{loss.lncrna_id}}</td>
+                        <script type="text/javascript">
+                            var lncrnaID = '{{ loss.lncrna_id }}';
+                            var lncrnaIDs = lncrnaID.split("/");
+                            $(document).ready($("#lncrna-ID-{{ loss.id  }}").text(lncrnaIDs[0]));
+                        </script>
+                        <td>{{ loss.mirna_id }}</td>
+                        <td><a href="{% url 'rhesus:editingshow' loss.edit_site_info_id %}">{{ loss.chromosome }}:{{ loss.chr_edit_pos }}</a></td>
+                        <td class="sequence" >miRNA:&nbsp;&nbsp;3'&nbsp;{{ loss.query_match_sequence }}&nbsp;5'<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="match-string-{{ loss.id }}">{{ loss.match_string }}</span><br>lncRNA:&nbsp;5'&nbsp;{{ loss.ref_match_sequence }}&nbsp;3'</td>
+                        <script>
+                            var matchString = "{{ loss.match_string }}";
+                            var editPosition = {{ loss.ref_edit_pos }};
+                            var lncRNAString = "{{ loss.ref_match_sequence }}";
+                            var minusNum = (lncRNAString.match(new RegExp("-","g"))||[]).length;
+
+                            matchString = matchString.replace(/ /g, "\u00a0");
+                            matchStringArray = matchString.split("");
+                            matchStringArray[editPosition +minusNum- 1] = "<span class='text-danger'><strong>" + "x" + "</strong></span>";
+                            matchString = matchStringArray.join("");
+                            $("#match-string-{{ loss.id }}").html(matchString);
+                        </script>
+                        <td>{{ loss.miranda_start_r|intcomma }}</td>
+                        <td>{{ loss.miranda_end_r|intcomma }}</td>
+                        <td>{{ loss.energy }}</td>
+                        <td>{{ loss.score }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}

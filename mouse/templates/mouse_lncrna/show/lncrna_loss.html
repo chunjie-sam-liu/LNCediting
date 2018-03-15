@@ -1,0 +1,36 @@
+{% load humanize %}
+{% if lncrnaLoss %}
+<div class="panel panel-primary">
+    <div class="panel-heading">Editing causes miRNA:lncRNA Loss</div>
+    <div class="panel-body fixed-height-panel">
+        <table class="table table-bordered table-hover table-condensed">
+            <tr>
+                <th class="text-center">miRNA ID</th>
+                <th class="text-center">lncRNA ID</th>
+                <th class="text-center">Editing Position</th>
+                <th class="text-center">Score</th>
+                <th class="text-center">Energy<br />(KCal/Mol)</th>
+                <th class="text-center">Binding Start<br />(TargetScan)</th>
+                <th class="text-center">Binding End<br />(TargetScan)</th>
+                <th class="text-center">Binding Start<br />(miRanda)</th>
+                <th class="text-center">Binding End<br />(miRanda)</th>
+                <th class="text-center"></th>
+            </tr>
+            {% for loss in lncrnaLoss %}
+                <tr>
+                    <td><a href="{% url 'mouse:mirnashow' loss.mirna_info_id %}">{{ loss.mirna_id }}</a></td>
+                    <td>{{ loss.lncrna_id }}</td>
+                    <td><a href="{% url 'mouse:editingshow' loss.edit_site_info_id %}">{{ loss.chromosome }}:{{ loss.chr_edit_pos|intcomma }}</a></td>
+                    <td>{{ loss.score }}</td>
+                    <td>{{ loss.energy }}</td>
+                    <td>{{ loss.targetscan_start_r|intcomma }}</td>
+                    <td>{{ loss.targetscan_end_r|intcomma }}</td>
+                    <td>{{ loss.miranda_start_r|intcomma }}</td>
+                    <td>{{ loss.miranda_end_r|intcomma }}</td>
+                    <td><a class="btn btn-xs btn-primary" data-target=".modal" data-toggle="modal" href="{% url 'mouse:functiongainloss' 'loss' loss.edit_site_info_id loss.mirna_info_id %}"> View</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endif %}

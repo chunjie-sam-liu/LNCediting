@@ -1,0 +1,34 @@
+{% load humanize %}
+<div class="bs-docs-section">
+<div class="panel panel-danger">
+    <div class="panel-heading">Editing in lncRNAs</div>
+    <div class="panel-body">
+        <table class="table table-bordered table-hover table-condensed tablesorter-bootstrap">
+            <tr>
+                <th>Editing Position</th>
+                <th>Relative Position on <br />lncRNA transcript</th>
+                <th>lncRNA ID</th>
+                <th>lncRNA source</th>
+                <th>Exon start</th>
+                <th>Exon end</th>
+                <th>Energy of unedited <br />lncRNA (kCal/mol)</th>
+                <th>Energy of edited <br />lncRNA (kCal/mol)</th>
+                <th>&Delta;Energy<br />(kCal/mol)</th>
+                <th>Structure</th>
+            </tr>
+            <tr>
+                <td>{{ editingRecord.chromosome }}:{{ editingRecord.chr_edit_pos|intcomma }}</td>
+                <td>{{ editingRecord.trans_edit_pos|intcomma }}</td>
+                <td><a href="{% url 'fly:lncrnashow' editingLncrna.id %}">{{ editingLncrna.lncrna_id }}</a></td>
+                <td>{{ editingLncrna.combined_resource }}</td>
+                <td>{{ editingLncrna.trans_start|intcomma }}</td>
+                <td>{{ editingLncrna.trans_end|intcomma }}</td>
+                <td>{{ editingLncrna.wild_energy }}</td>
+                <td>{{ editingLncrna.edit_energy }}</td>
+                <td>{{ editingLncrna.delta_energy }}</td>
+                <td><a class="btn btn-xs btn-primary" data-target=".modal" data-toggle="modal" href="{% url 'human:rnafold' editingLncrna.id editingid %}">View</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>

@@ -1,0 +1,43 @@
+{% load staticfiles %}
+{% load humanize %}
+<div class="bs-docs-section">
+    <div class="bs-callout bs-callout-info">
+        <h4>lncRNA Transcripts</h4>
+        <p>In this module, we provide the information of <span class="badge alert-info">11,089</span> fly lncRNA transcripts. There are <span class="badge alert-danger">{{ total.count|intcomma }}</span> fly lncRNA transcripts on <span class="badge alert-success" id="chromosome-selected">{{ chromosome|default:"all chromosome" }}</span>.</p>
+
+
+        <div class="form-group has-success" style="margin-top: 20px; margin-bottom: 60px;">
+            <form accept-charset="UTF-8" action="{% url 'fly:lncrnachr'  %}" class="form form-horizontal" id="lncrna-filter-form" method="get">
+                {% csrf_token %}
+                <label class="control-label col-sm-2" for="chromosome">Select chromosome</label>
+                <div class="col-sm-2">
+                    <select class="form-control" id="chromosome" name="chromosome">
+                        <option value="all_chromosome">all chromosome</option>
+                        <option value="chr2L">chr2L</option>
+                        <option value="chr2R">chr2R</option>
+                        <option value="chr3L">chr3L</option>
+                        <option value="chr3R">chr3R</option>
+                        <option value="chr4">chr4</option>
+                        <option value="chrX">chrX</option>
+                    </select>
+                </div>
+        </form>
+            <form class="form-horizontal" role="form" method="get" action="{% url 'fly:lncrna' %}">
+            {% csrf_token %}
+                <label class="control-label col-sm-2">lncRNA ID&nbsp;<span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="Input lncRNA ID 'NONDMEG000970.1'" data-trigger="hover" data-placement="bottom"></span>:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="term" value="{{ term|default:'NONDMEG000970.1' }}" placeholder="NONDMEG000970.1" pattern="[a-zA-Z0-9\-\.]*"/>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-success">Search lncRNA</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $('#chromosome').on('change', function () {
+        $('form#lncrna-filter-form').submit();
+    });
+    $("#chromosome").val("{{ chromosome|default:'all_chromosome' }}")
+</script>

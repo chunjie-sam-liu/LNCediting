@@ -1,0 +1,8 @@
+{% extends "human/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    {% include 'lncrna/show/basic_information.html' %}
+    {% include 'lncrna/show/lncrna_editing.html' %}
+    {% include 'lncrna/show/lncrna_gain.html' %}
+    {% include 'lncrna/show/lncrna_loss.html' %}
+{% endblock %}

@@ -1,0 +1,12 @@
+#miR	TargetScan binding start	TargetScan binding end	miRanda binding start	miRanda binding end	score by miRanda	binding energy predicted by miRanda
+dme-miR-1003-3p	218	225	203	225	145.00	-11.90
+dme-miR-190-5p	14	20	1	21	152.00	-15.38
+dme-miR-125-3p	237	244	224	244	148.00	-11.29
+dme-miR-308-5p	184	190	167	190	150.00	-13.55
+dme-miR-1004-3p	218	225	205	225	143.00	-12.39
+dme-miR-87-3p	126	132	113	133	158.00	-13.20
+dme-miR-304-3p	188	194	174	195	156.00	-12.16
+dme-miR-79-5p	151	158	136	158	140.00	-12.35
+dme-miR-962-3p	197	204	182	204	147.00	-10.47
+dme-miR-4961-3p	118	124	102	125	153.00	-13.16
+dme-miR-1008-3p	43	49	28	49	145.00	-17.77

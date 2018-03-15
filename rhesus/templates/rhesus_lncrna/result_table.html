@@ -1,0 +1,29 @@
+{% load humanize %}
+{% if select %}
+    <table class="table table-bordered table-hover table-condensed tablesorter tablesorter-bootstrap" role = "grid">
+        <thead>
+            <tr class = "active" role="row">
+                <th >lncRNA ID</th>
+                <th >Source</th>
+{#                <th>Annotation by RADAR</th>#}
+                <th>Chr</th>
+                <th>Editing Number</th>
+                <th>Gain<span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="The number of gain miRNA:lncRNA interactions on this lncRNA" data-trigger="hover" data-placement="bottom"></span></th>
+                <th>Loss<span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="The number of loss miRNA:lncRNA interactions on this lncRNA" data-trigger="hover" data-placement="bottom"></span></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lncrna in select %}
+            <tr>
+                <td><a href="{% url 'rhesus:lncrnashow' lncrna.id %}">{{ lncrna.lncrna_id }}</a></td>
+                <td>{{ lncrna.combined_resource }}</td>
+{#                <td>{{ lncrna.annotation_by_RADAR }}</td>#}
+                <td>{{ lncrna.chromosome }}</td>
+                <td>{{ lncrna.edit_num }}</td>
+                <td>{{ lncrna.gain_num|default:0 }}</td>
+                <td>{{ lncrna.loss_num|default:0 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

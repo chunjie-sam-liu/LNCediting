@@ -1,0 +1,16 @@
+{% extends "human/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    {% include 'editing/show/basic_information.html' %}
+    {% include 'editing/show/editing_lncrna.html' %}
+    {% include 'editing/show/editing_gain.html' %}
+    {% include 'editing/show/editing_loss.html' %}
+	{% if not editingGain and not editingLoss %}
+	<div class="bs-docs-section">
+		<div id="message" class="alert alert-success" role="alert">
+			<button type="button" class="close" data-dismiss="alert"><span>x</span></button>
+			<p>This editing site does not impact miRNA:lncRNA interaction by our prediction.</p>
+		</div>
+	</div>
+	{% endif %}
+{% endblock %}

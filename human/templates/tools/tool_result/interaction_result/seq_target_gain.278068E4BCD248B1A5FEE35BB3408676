@@ -1,0 +1,3 @@
+#miR	TargetScan binding start	TargetScan binding end	miRanda binding start	miRanda binding end	score by miRanda	binding energy predicted by miRanda
+hsa-miR-6723-5p	30	36	15	37	142.00	-15.53
+hsa-miR-554	31	37	18	38	162.00	-22.41

@@ -1,0 +1,65 @@
+#!/usr/bin/perl
+#gongjing 2013-07-09 used to get the target gain and loss;
+
+`rm /home/liucj/web/miRNASNP2/online_set_3/SEQ1.*`;
+`rm /home/liucj/web/miRNASNP2/online_set_3/SEQ2.*`;
+`rm /home/liucj/web/miRNASNP2/online_set_3/SEQ1_*`;
+`rm /home/liucj/web/miRNASNP2/online_set_3/SEQ2_*`;
+`rm /home/liucj/web/miRNASNP2/online_set_3/seq*`;
+
+$seq1=$ARGV[0];
+$seq2=$ARGV[1];
+$data_file="/home/liucj/web/miRNASNP2/online_set_3/";
+$plot_pl=$data_file."2_get_color_for_seqence.pl";
+$seq1_for_RNAfold = $data_file."seq1_for_RNAfold";
+$seq2_for_RNAfold = $data_file."seq2_for_RNAfold";
+$seq1_for_RNAplot = $data_file."seq1_for_RNAplot";
+$seq2_for_RNAplot = $data_file."seq2_for_RNAplot";
+
+
+open(OUT1,">$seq1_for_RNAfold") ;
+open(OUT2,">$seq2_for_RNAfold") ;
+open(OUT3,">$seq1_for_RNAplot") ;
+open(OUT4,">$seq2_for_RNAplot") ;
+
+
+$seq1=~s/[^ACTGUactgu]//;
+$seq2=~s/[^ACTGUactgu]//;
+
+@seq1=split(//,$seq1);
+@seq2=split(//,$seq2);
+$varation_pos=200;
+for($i=0;$i<=$#seq1;$i++){
+	if($seq1[$i] ne $seq2[$i]){
+		$varation_pos=$i;
+	}
+}
+
+
+
+print OUT1 ">SEQ1\n$seq1\n";
+print OUT2 ">SEQ2\n$seq2\n";
+print OUT3 "SEQ1\t$seq1\t$varation_pos\n";
+print OUT4 "SEQ2\t$seq2\t$varation_pos\n";
+
+$seq1_RNAfold_re=$data_file."seq1_RNAfold_re";
+$seq2_RNAfold_re=$data_file."seq2_RNAfold_re";
+$seq1_RNAplot_re=$data_file."seq1_RNAplot_re";
+$seq2_RNAplot_re=$data_file."seq2_RNAplot_re";
+ 
+#open(OUT5,">tmp.sh") or die "cannot open tmp.sh \n";
+#print OUT5 "RNAfold < $seq1_for_RNAfold > $seq1_RNAfold_re\nRNAfold < $seq2_for_RNAfold > $seq2_RNAfold_re\nperl $plot_pl $seq1_for_RNAplot\nperl $plot_pl $seq2_for_RNAplot\n";
+`RNAfold < $seq1_for_RNAfold > $seq1_RNAfold_re`;
+`RNAfold < $seq2_for_RNAfold > $seq2_RNAfold_re`;
+`perl $plot_pl $seq1_for_RNAplot`;
+`perl $plot_pl $seq2_for_RNAplot`;
+#print "perl $plot_pl $seq2_for_RNAplot\n";
+#`sh tmp.sh`;
+`chmod 777 /home/liucj/web/miRNASNP2/online_set_3/SEQ*`;
+`chmod 777 /home/liucj/web/miRNASNP2/online_set_3/seq*`;
+#`rm /home/liucj/web/miRNASNP_public_html_v2/online_set_3/SEQ1.*`;
+#`rm /home/liucj/web/miRNASNP_public_html_v2/online_set_3/SEQ2.*`;
+#`rm /home/liucj/web/miRNASNP_public_html_v2/online_set_3/SEQ1_*`;
+#`rm /home/liucj/web/miRNASNP_public_html_v2/online_set_3/SEQ2_*`;
+#`rm /home/liucj/web/miRNASNP_public_html_v2/online_set_3/seq*`
+

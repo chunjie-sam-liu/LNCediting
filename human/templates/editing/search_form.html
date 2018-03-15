@@ -1,0 +1,58 @@
+{% load humanize %}
+
+<div class="bs-callout bs-callout-info">
+    <div class="description">
+    <h4>RNA editing sites in human lncRNA transcripts.</h4>
+    <p>In total, we identified <span class="badge alert-info">191,991</span> RNA editing sites in <span class="badge alert-success">40,229</span> human lncRNA transcripts. Here, we develop an advanced search helping users to prioritize the functional RNA editing sites. Users can input chromosome ID, chromosome region or lncRNA source.</p>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+    <form class="form-horizontal" role="form" method="GET" action="{% url 'human:editing' %}">
+        {% csrf_token %}
+        <div class="form-group has-success">
+            <label class="control-label col-sm-2">Position:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="position" value="{{ position }}" placeholder="chr1:1102563-201688733" pattern = "chr.*:\d*\-\d*"/>
+            </div>
+            <span class="help-block">Input a user-defined region such as "chr1:1102563-201688733" or "chr1"</span>
+        </div>
+        <div class="form-group has-success">
+            <label class="control-label col-sm-2">lncRNA ID:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="term" value="{{ term }}" placeholder="NONHSAT000088" pattern="[a-zA-Z0-9\-\_]*" />
+            </div>
+            <span class="help-block">Input lncRNA  ID such as "NONHSAT000088"</span>
+{#            <span class="help-block">Input lncRNA Name or NONCODE ID such as "XIST" or "NONHSAT000088"</span>#}
+        </div>
+        <div class="form-group has-success">
+            <label class="control-label col-sm-2" >Source:</label>
+            <div class="col-sm-3">
+                <select class="form-control" name="source" >
+                    <option value="">All</option>
+                    <option value="CABILI">CABILI</option>
+                    <option value="GENCODE">GENCODE</option>
+                    <option value="HANGAUER">HANGAUER</option>
+                    <option value="HE">HE</option>
+                    <option value="IYER">IYER</option>
+                    <option value="KELLEY">KELLEY</option>
+                    <option value="KRETZ">KRETZ</option>
+                    <option value="LNCipedia">LNCipedia</option>
+                    <option value="NONCODE">NONCODE</option>
+                    <option value="PARALKAR">PARALKAR</option>
+                    <option value="TRIMARCHI">TRIMARCHI</option>
+                    <option value="WHITE">WHITE</option>
+                    <option value="YANG">YANG</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group has-success">
+            <div class="col-sm-offset-5 col-sm-2">
+                <button type="submit" class="btn btn-success">Search</button>
+                <button type="reset" class="btn btn-success">Reset</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>

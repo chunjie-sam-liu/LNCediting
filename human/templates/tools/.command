@@ -1,0 +1,88 @@
+LS
+L
+CD ../
+L
+cd ../
+ls
+cd tool_
+ls
+cd tool_result/
+l
+vim tools_main.html 
+l
+cd tool_result/
+l
+cd tool_
+ls
+cd tool_list/
+l
+cd ../
+ls
+cd tool_list/
+l
+cd tool_
+cd ../
+ls
+cd tool_
+cd tool_list/
+l
+cd ../
+ls
+cd tool_
+cd tool_list/
+l
+cd ../
+cd tool_result/
+l
+cd ../
+ls
+cd tool_result/
+ls
+cd tool_list/
+l
+cd ../
+ls
+cd tool_list/
+ls
+cd tool_list/
+l
+cd ../
+ls
+cd tool_list/
+l
+perl tool_list/structure/online_analysis.pl
+perl tool_list/structure/online_analysis.pl TTTGACCTTCAGCAAGGTCAAAGGGAGTCCGAACTAGTCTCAGGCTTCAACATCGAATACGCCGCAGGCCCCTTCGCCCTATTCTTCATAGCCGAATACACAAACATTATTATAATAAACACCCTCACCACTACAATCTTCCTAGGAACAACATATAACGCACTCTCCCCTGAACTCTACACAACATATTTTGTCACCAAGACCCTACTTCTGACCTCCCTGTTCTTATGAATTCGAACAGCATACCCCCGATTCCGCTACGACCAACTCATACACCTCCTATGAAAAAACTTCCTACCACTCACCCTAGCATTACTTATATGATATGTCTCCATACCCATTACAATCTCCAGCATTCCCCCTCAAACCTAA TTTGACCTTCAGCAAGGTCAAAGGGAGTCCGAACTAGTCTCAGGCTTCAACATCGAATACGCCGCAGGCCCCTTCGCCCTATTCTTCATAGCCGAATACACAAACATTATTATAATAAACACCCTCACCACTACAATCTTCCTAGGAACAACATATAACGCACTCTCCCCTGAACTCTACACAACATATTTTGTCACCAAGACCCTACTTCTGACCTCCCTGTTCTTATGAATTCGAACAGCATACCCCCGATTCCGCTACGACCAACTCATACACCTCCTATGAAAAAACTTCCTACCACTCACCCTAGCATTACTTATATGATATGTCTCCATACCCATTACAATCTCCAGCATTCCCCCTCAAACCTAA
+l
+ll
+rm rna.ps 
+l
+rm SEQ1_ss.ps 
+l
+rm SEQ2_ss.ps 
+ls
+l
+cd
+ls
+cd tool_list/
+ls
+cd tool_list/
+l
+cd ../
+ls
+cd tool_list/
+ls
+cd tool_list/structure/
+cd
+ls
+cd tool_list/
+ls
+cd tool_result/
+l
+cd tool_
+cd tool_result/
+ls
+ll
+cd tool_result/
+l
+ll
+cd ../

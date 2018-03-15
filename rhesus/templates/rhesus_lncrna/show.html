@@ -1,0 +1,8 @@
+{% extends "rhesus/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    {% include 'rhesus_lncrna/show/basic_information.html' %}
+    {% include 'rhesus_lncrna/show/lncrna_editing.html' %}
+    {% include 'rhesus_lncrna/show/lncrna_gain.html' %}
+    {% include 'rhesus_lncrna/show/lncrna_loss.html' %}
+{% endblock %}

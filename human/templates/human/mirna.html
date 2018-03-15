@@ -1,0 +1,11 @@
+{% extends "human/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="bs-docs-section">
+    <div class="bs-callout bs-callout-info">
+        <h4>miRNA Expression</h4>
+          <p>In this module, we will display the miRNA:lncRNA interaction and related editings based on the miRNA expression. According to the analyses of miRNA expression profiles of 9566 small RNA samples from TCGA, we found that only 553 miRNAs (21% of miRBase annotated ) have a expression level >1 RPM (reads per million), the remaining 79% of miRNAs are at a very low or almost no expression level. Hence, we class all the miRNAs into four categories. Users can select interested miRNAs to obtain their target lncRNAs.</p>
+      </div>
+    </div>
+    {% include 'mirna/search_form.html' %}
+{% endblock %}

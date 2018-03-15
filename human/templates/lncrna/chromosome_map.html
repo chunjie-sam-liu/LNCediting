@@ -1,0 +1,76 @@
+{% load staticfiles %}
+{% load humanize %}
+<div class="bs-docs-section">
+    <div class="bs-callout bs-callout-info">
+        <h4>lncRNA Transcripts</h4>
+        <p>In this module, we provide the information of <span class="badge alert-info">40,229</span> human lncRNA transcripts. There are <span class="badge alert-danger">{{ total.count|intcomma }}</span> human lncRNAs on <span class="badge alert-success">{{ chromosome|default:"all chromosomes" }}.</span> </p>
+        <form class="form-horizontal" role="form" method="get" action="{% url 'human:lncrna' %}">
+            {% csrf_token %}
+            <div class="form-group has-success" style="margin-top:20px;">
+                <label class="control-label col-sm-2">Name or ID&nbsp;<span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="Input lncRNA Name or  ID such as 'H19' or 'NONHSAT000088'" data-trigger="hover" data-placement="bottom"></span>:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="term" value="{{ term|default:'H19' }}" placeholder="H19" pattern="[a-zA-Z0-9]*"/>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-success">Search lncRNA</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <img src="{% static 'human/images/chromosome.png' %}" alt="chromosome" usemap="chromosomemap">
+            <map name="chromosomemap" id="chromosomemap">
+                <area shape="rect" coords="21,115,31,135" href="{% url 'human:lncrnachr' 'chr1'%}" title="chr1"/>
+                <area shape="rect" coords="58,115,68,135" href="{% url 'human:lncrnachr' 'chr2'%}" title="chr2"/>
+                <area shape="rect" coords="99,115,109,135" href="{% url 'human:lncrnachr' 'chr3'%}" title="chr3"/>
+                <area shape="rect" coords="136,115,146,135" href="{% url 'human:lncrnachr' 'chr4'%}" title="chr4"/>
+                <area shape="rect" coords="174,115,184,135" href="{% url 'human:lncrnachr' 'chr5'%}" title="chr5"/>
+                <area shape="rect" coords="213,115,223,135" href="{% url 'human:lncrnachr' 'chr6'%}" title="chr6"/>
+                <area shape="rect" coords="253,115,263,135" href="{% url 'human:lncrnachr' 'chr7'%}" title="chr7"/>
+                <area shape="rect" coords="289,115,300,135" href="{% url 'human:lncrnachr' 'chr8'%}" title="chr8"/>
+                <area shape="rect" coords="326,115,337,135" href="{% url 'human:lncrnachr' 'chr9'%}" title="chr9"/>
+                <area shape="rect" coords="362,115,380,135" href="{% url 'human:lncrnachr' 'chr10'%}" title="chr10"/>
+                <area shape="rect" coords="399,115,418,135" href="{% url 'human:lncrnachr' 'chr11'%}" title="chr11"/>
+                <area shape="rect" coords="438,115,456,135" href="{% url 'human:lncrnachr' 'chr12'%}" title="chr12"/>
+                <area shape="rect" coords="479,115,496,135" href="{% url 'human:lncrnachr' 'chr13'%}" title="chr13"/>
+                <area shape="rect" coords="518,115,533,135" href="{% url 'human:lncrnachr' 'chr14'%}" title="chr14"/>
+                <area shape="rect" coords="556,115,573,135" href="{% url 'human:lncrnachr' 'chr15'%}" title="chr15"/>
+                <area shape="rect" coords="596,115,613,135" href="{% url 'human:lncrnachr' 'chr16'%}" title="chr16"/>
+                <area shape="rect" coords="633,115,648,135" href="{% url 'human:lncrnachr' 'chr17'%}" title="chr17"/>
+                <area shape="rect" coords="669,115,687,135" href="{% url 'human:lncrnachr' 'chr18'%}" title="chr18"/>
+                <area shape="rect" coords="709,115,727,135" href="{% url 'human:lncrnachr' 'chr19'%}" title="chr19"/>
+                <area shape="rect" coords="744,115,763,135" href="{% url 'human:lncrnachr' 'chr20'%}" title="chr20"/>
+                <area shape="rect" coords="781,115,800,135" href="{% url 'human:lncrnachr' 'chr21'%}" title="chr21"/>
+                <area shape="rect" coords="820,115,838,135" href="{% url 'human:lncrnachr' 'chr22'%}" title="chr22"/>
+                <area shape="rect" coords="862,115,875,135" href="{% url 'human:lncrnachr' 'chrX'%}" title="chrX"/>
+                <area shape="rect" coords="901,115,915,135" href="{% url 'human:lncrnachr' 'chrY'%}" title="chrY"/>
+                <area shape="rect" coords="21,0,31,105" href="{% url 'human:lncrnachr' 'chr1'%}" title="chr1"/>
+                <area shape="rect" coords="58,3,68,105" href="{% url 'human:lncrnachr' 'chr2'%}" title="chr2"/>
+                <area shape="rect" coords="99,22,109,105" href="{% url 'human:lncrnachr' 'chr3'%}" title="chr3"/>
+                <area shape="rect" coords="136,27,146,105" href="{% url 'human:lncrnachr' 'chr4'%}" title="chr4"/>
+                <area shape="rect" coords="174,28,184,105" href="{% url 'human:lncrnachr' 'chr5'%}" title="chr5"/>
+                <area shape="rect" coords="213,33,223,105" href="{% url 'human:lncrnachr' 'chr6'%}" title="chr6"/>
+                <area shape="rect" coords="253,38,263,105" href="{% url 'human:lncrnachr' 'chr7'%}" title="chr7"/>
+                <area shape="rect" coords="290,46,300,105" href="{% url 'human:lncrnachr' 'chr8'%}" title="chr8"/>
+                <area shape="rect" coords="327,48,337,105" href="{% url 'human:lncrnachr' 'chr9'%}" title="chr9"/>
+                <area shape="rect" coords="366,48,376,105" href="{% url 'human:lncrnachr' 'chr10'%}" title="chr10"/>
+                <area shape="rect" coords="403,48,414,105" href="{% url 'human:lncrnachr' 'chr11'%}" title="chr11"/>
+                <area shape="rect" coords="442,50,452,105" href="{% url 'human:lncrnachr' 'chr12'%}" title="chr12"/>
+                <area shape="rect" coords="482,54,493,105" href="{% url 'human:lncrnachr' 'chr13'%}" title="chr13"/>
+                <area shape="rect" coords="520,55,530,105" href="{% url 'human:lncrnachr' 'chr14'%}" title="chr14"/>
+                <area shape="rect" coords="557,55,567,105" href="{% url 'human:lncrnachr' 'chr15'%}" title="chr15"/>
+                <area shape="rect" coords="596,63,610,105" href="{% url 'human:lncrnachr' 'chr16'%}" title="chr16"/>
+                <area shape="rect" coords="633,64,645,105" href="{% url 'human:lncrnachr' 'chr17'%}" title="chr17"/>
+                <area shape="rect" coords="671,65,684,105" href="{% url 'human:lncrnachr' 'chr18'%}" title="chr18"/>
+                <area shape="rect" coords="709,70,724,105" href="{% url 'human:lncrnachr' 'chr19'%}" title="chr19"/>
+                <area shape="rect" coords="747,73,760,105" href="{% url 'human:lncrnachr' 'chr20'%}" title="chr20"/>
+                <area shape="rect" coords="783,75,797,105" href="{% url 'human:lncrnachr' 'chr21'%}" title="chr21"/>
+                <area shape="rect" coords="822,74,837,105" href="{% url 'human:lncrnachr' 'chr22'%}" title="chr22"/>
+                <area shape="rect" coords="861,38,874,105" href="{% url 'human:lncrnachr' 'chrX'%}" title="chrX"/>
+                <area shape="rect" coords="901,73,913,105" href="{% url 'human:lncrnachr' 'chrY'%}" title="chrY"/>
+            </map>
+         </div>
+     </div>
+</div>

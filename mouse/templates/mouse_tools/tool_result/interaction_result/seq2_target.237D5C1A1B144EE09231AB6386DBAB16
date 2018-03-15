@@ -1,0 +1,11 @@
+#miR	TargetScan binding start	TargetScan binding end	miRanda binding start	miRanda binding end	score by miRanda	binding energy predicted by miRanda
+mmu-miR-7040-3p	191	198	177	198	141.00	-14.58
+mmu-miR-7223-5p	49	55	34	56	150.00	-14.49
+mmu-miR-7667-3p	43	50	28	50	141.00	-16.36
+mmu-miR-7221-3p	41	47	29	48	153.00	-20.38
+mmu-miR-3101-3p	49	55	38	56	150.00	-18.00
+mmu-miR-3969	206	212	194	213	140.00	-14.33
+mmu-miR-679-5p	41	47	25	48	147.00	-21.08
+mmu-miR-872-5p	98	105	84	105	158.00	-14.31
+mmu-miR-3086-3p	218	224	207	225	152.00	-18.55
+mmu-miR-154-5p	99	105	83	105	145.00	-18.30

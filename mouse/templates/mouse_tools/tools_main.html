@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-6">
+        {% include 'mouse_tools/tool_list/editing_lncRNA.html' %}
+    </div>
+    <div class="col-md-6">
+        {% include 'mouse_tools/tool_list/miRNA_lncRNA.html' %}
+    </div>
+</div>
+<script>
+$(document).ready(function() {
+	$('button.submit-check').on('click', function(e) {
+		var re_sequence = new RegExp("^[ATGCUatgcu]*$");
+        var re_input_check = new RegExp("[Aa]");
+		var form = $(this).parents('form');
+		var textarea1 = form.find('textarea[name=wild]').val();
+		var textarea2 = form.find('input[name=position]').val();
+		var value = $.grep(form.find('textarea[data-required=true]'), function(n, i){x=$(n); return x.val() == "";});
+		if (!re_sequence.test(textarea1) || textarea1 == "" || value.length > 0 ) {
+			$('<div id="message" class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>	<strong>Error!</strong> Please enter valid "AGCT" sequence!</div>').insertBefore(form);
+			e.preventDefault();
+		}
+        if (!re_input_check.test(textarea1[parseInt(textarea2) - 1])){
+            $('<div id="message" class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>	<strong>Error!</strong> Please Check the editing position is "A", we focus on A&rarr;I editing at present!</div>').insertBefore(form);
+			e.preventDefault();
+        }
+        if(parseInt(textarea2) > textarea1.length){
+            $('<div id="message" class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>	<strong>Error!</strong> Editing position is out of sequence range !</div>').insertBefore(form);
+			e.preventDefault();
+        }
+	});
+});
+</script>

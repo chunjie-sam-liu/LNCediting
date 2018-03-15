@@ -1,0 +1,57 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html >
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,user-scalable=no">
+        {# load css file#}
+{#        <link rel="stylesheet" type = "text/css" href="{% static 'human/css/bootstrap.min.css' %}">#}
+        <link rel="stylesheet" type = "text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'human/css/docs.min.css' %}">
+        <link rel="stylesheet" type = "text/css" href="{% static 'human/css/bootstrap-theme.min.css' %}">
+        {# tablesorter pager #}
+        <link rel="stylesheet" type="text/css" href="{% static 'human/css/jquery.tablesorter.pager.min.css' %}">
+        {# load main css #}
+        <link rel="stylesheet" type = "text/css" href="{% static 'human/css/main.css' %}">
+
+        {#  load jquery and bootstrap js #}
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="{% static 'human/js/bootstrap.min.js' %}"></script>
+        {# load tablesorter  #}
+        <script src="{% static 'human/js/jquery.tablesorter.min.js' %}"></script>
+        <script src="{% static 'human/js/jquery.tablesorter.widgets.min.js' %}"></script>
+        <script src="{% static 'human/js/jquery.tablesorter.pager.min.js' %}"></script>
+        {# compatible to IE #}
+        <script src="{% static 'human/js/respond.min.js' %}"></script>
+        <script src="{% static 'human/js/html5shiv.js' %}"></script>
+        {#icon  #}
+        <link rel="icon" href="{% static 'human/images/Homo_sapiens.png' %}">
+
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+        {% block extra_head %}
+        {% endblock %}
+    </head>
+
+    <body>
+        {% autoescape on %}
+        <div class="container"><a href="{% url 'human:index' %}"><img src="{% static 'human/images/editingLogo.jpg' %}" alt="editingLogo" id="logo-banner" width="100%" ></a></div>
+        {% include "human/header.html" %}
+
+        <div class="container bs-docs-container" >
+
+            {% block content %}{% endblock %}
+
+        </div>
+        {% include "human/footer.html" %}
+        {# load main js #}
+
+
+        <script src="{% static 'human/js/main.js' %}"></script>
+        <script src="{% static 'human/js/docs.min.js' %}"></script>
+        {% endautoescape %}
+    </body>
+</html>

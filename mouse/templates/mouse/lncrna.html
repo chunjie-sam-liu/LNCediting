@@ -1,0 +1,10 @@
+{% extends "mouse/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="bs-docs-section">
+    {% include 'mouse_lncrna/search_table.html' %}
+    {% include 'mouse/pagination.html' %}
+    {% include 'mouse_lncrna/result_table.html' %}
+    {% include 'mouse/pagination.html' %}
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "rhesus/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="bs-docs-section">
+    {% include 'rhesus_lncrna/search_table.html' %}
+    {% include 'rhesus/pagination.html' %}
+    {% include 'rhesus_lncrna/result_table.html' %}
+    {% include 'rhesus/pagination.html' %}
+    </div>
+{% endblock %}

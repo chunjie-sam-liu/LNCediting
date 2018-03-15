@@ -1,0 +1,195 @@
+{% extends "rhesus/base.html" %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="bs-docs-section">
+        <h3 id="overview" class="page-header">Results of lncRNA editing impact on miRNA:lncRNA interaction</h3>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <!--Download Data-->
+            <div class="panel panel-success">
+                <div class="panel-heading" role="tab" id="headingZero">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseZero" aria-expanded="true" aria-labelledby="collapseZero">
+                            Download Data
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse in" id="collapseZero" role="tabpanel" aria-labelledby="headingZero">
+                <div class="panel-body">
+                    <table class="table table-hover table-bordered">
+                        <tr >
+                            <th>Unedited lncRNA binding miRNAs</th>
+                            <td style="color:red" ><a href="{% static 'rhesus/download/wild_download.txt' %}"  target="_blank" ><strong style="color:red">Download here</strong></a></td>
+                        </tr>
+                        <tr >
+                            <th>Edited lncRNA binding miRNAs</th>
+                            <td><a href="{% static 'rhesus/download/wild_download.txt' %}" target="_blank"><strong style="color:red">Download here</strong></a></td>
+                        </tr>
+                        <tr >
+                            <th>The lost miRNAs of unedited lncRNA</th>
+                            <td><a href="{% static 'rhesus/download/wild_download.txt' %}" target="_blank"><strong style="color:red">Download here</strong></a></td>
+                        </tr>
+                        <tr>
+                            <th>The gain miRNAs of edited lncRNA</th>
+                            <td><a href="{% static 'rhesus/download/wild_download.txt' %}" target="_blank"><strong style="color:red">Download here</strong></a></td>
+                        </tr>
+                    </table>
+                </div>
+                </div>
+            </div>
+            <!--Wild sequence related miRNAs-->
+            <div class="panel panel-info">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Unedited lncRNA binding miRNAs (Total: {{ file_wild_list|length }})<span style="float:right;" data-toggle="popover" data-content="TU: TargetScan predicted targets on unedited-type lncRNAs;<br />MU: miRanda predicted targets on unedited-type lncRNAs." data-original-title="Notice" data-trigger="hover" data-html="true" data-placement="bottom">(TU and MU)</span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="panel-collapse collapse"  id="collapseOne" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                        {% if file_wild_list %}
+                        <table class="table table-hover table-bordered" >
+                            <tr class="success">
+                                <th >miRNA</th>
+                                <th >Targetscan Start</th>
+                                <th >Targetscan End</th>
+                                <th >miRanda Start</th>
+                                <th >miRanda End</th>
+                                <th >miRanda score</th>
+                                <th >Energy by miRanda</th>
+                            </tr>
+                            {% for wild in file_wild_list %}
+                                <tr style="text-align: center">
+                                    <td>{{ wild.mir_wild }}</td>
+                                    <td>{{ wild.start_ts_wild }}</td>
+                                    <td>{{ wild.end_ts_wild }}</td>
+                                    <td>{{ wild.start_da_wild }}</td>
+                                    <td>{{ wild.end_da_wild }}</td>
+                                    <td>{{ wild.da_sc_wild }}</td>
+                                    <td>{{ wild.da_en_wild }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        {% endif %}
+                        </div>
+                    </div>
+            </div>
+            <!--Editing sequence related miRNAs-->
+            <div class="panel panel-danger">
+                <div class="panel-heading" role="tab" id="headingTUo">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTUo" aria-expanded="false" aria-controls="collapseTUo">
+                        Edited lncRNA binding miRNAs (Total: {{ file_edit_list|length }})<span style="float:right;" data-toggle="popover" data-content="TE: TargetScan predicted targets on edited-type lncRNAs;<br />ME: miRanda predicted targets on edited-type lncRNAs." data-original-title="Notice" data-trigger="hover" data-html="true" data-placement="bottom">(TE and ME)</span>
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse"  id="collapseTUo" role="tabpanel" aria-labelledby="headingTUo">
+                <div class="panel-body">
+                {% if file_edit_list %}
+                    <table class="table table-hover table-bordered">
+                        <tr class="success">
+                            <th >miRNA</th>
+                            <th >Targetscan Start</th>
+                            <th >Targetscan End</th>
+                            <th >miRanda Start</th>
+                            <th >miRanda End</th>
+                            <th >miRanda score</th>
+                            <th >Energy by miRanda</th>
+                        </tr>
+                        {% for edit in file_edit_list %}
+                            <tr style="text-align: center">
+                                <td>{{ edit.mir_edit }}</td>
+                                <td>{{ edit.start_ts_edit }}</td>
+                                <td>{{ edit.end_ts_edit }}</td>
+                                <td>{{ edit.start_da_edit }}</td>
+                                <td>{{ edit.end_da_edit }}</td>
+                                <td>{{ edit.da_sc_edit }}</td>
+                                <td>{{ edit.da_en_edit }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+                </div>
+                </div>
+            </div>
+            <!--The lost miRNAs of wild sequence-->
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="headingFour">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            The lost miRNAs of unedited lncRNA (Total: {{ file_loss_list|length }})<span style="float:right;" data-toggle="popover" data-content="The miRNA–lncRNA interactions exist in both TU and MU, but in neither TE nor ME, were defined as interaction losses." data-original-title="Notice" data-trigger="hover" data-html="true" data-placement="bottom">((TU and MU) - (TE or ME))</span>
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse" id="collapseFour" role="tabpanel" aria-labelledby="headingFour">
+                <div class="panel-body">
+                    {% if file_loss_list %}
+                    <table class="table table-hover table-bordered">
+                        <tr class="success">
+                            <th >miRNA</th>
+                            <th >Targetscan Start</th>
+                            <th >Targetscan End</th>
+                            <th >miRanda Start</th>
+                            <th >miRanda End</th>
+                            <th >miRanda score</th>
+                            <th >Energy by miRanda</th>
+                        </tr>
+                        {% for loss in file_loss_list %}
+                            <tr style="text-align: center">
+                                <td>{{ loss.mir_loss }}</td>
+                                <td>{{ loss.start_ts_loss }}</td>
+                                <td>{{ loss.end_ts_loss }}</td>
+                                <td>{{ loss.start_da_loss }}</td>
+                                <td>{{ loss.end_da_loss }}</td>
+                                <td>{{ loss.da_sc_loss }}</td>
+                                <td>{{ loss.da_en_loss }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+            <!--The gained miRNAs of Editing sequence-->
+            <div class="panel panel-danger">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            The gain miRNAs of edited lncRNA (Total: {{ file_gain_list|length }})<span style="float:right;" data-toggle="popover" data-content="The miRNA–lncRNA interactions exist in both TE and ME, but in neither TU nor MU, were defined as interaction gains." data-original-title="Notice" data-trigger="hover" data-html="true" data-placement="bottom"> ((TE and ME) - (TU or MU))</span>
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse" id="collapseThree" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                {% if file_gain_list %}
+                    <table class="table table-hover table-bordered">
+                        <tr class="success">
+                            <th >miRNA</th>
+                            <th >Targetscan Start</th>
+                            <th >Targetscan End</th>
+                            <th >miRanda Start</th>
+                            <th >miRanda End</th>
+                            <th >miRanda score</th>
+                            <th >Energy by<br> miRanda</th>
+                        </tr>
+                        {% for gain in file_gain_list %}
+                            <tr style="text-align: center">
+                                <td>{{ gain.mir_gain }}</td>
+                                <td>{{ gain.start_ts_gain }}</td>
+                                <td>{{ gain.end_ts_gain }}</td>
+                                <td>{{ gain.start_da_gain }}</td>
+                                <td>{{ gain.end_da_gain }}</td>
+                                <td>{{ gain.da_sc_gain }}</td>
+                                <td>{{ gain.da_en_gain }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+                </div>
+                </div>
+            </div>
+
+</div>
+    </div>
+{% endblock %}

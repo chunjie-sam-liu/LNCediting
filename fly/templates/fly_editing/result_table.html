@@ -1,0 +1,33 @@
+{% load humanize %}
+{% if select %}
+    <table class="table table-bordered table-hover table-condensed tablesorter tablesorter-bootstrap" role = "grid">
+        <thead>
+            <tr class = "active" role="row">
+                <th>Editing Position</th>
+                <th>Transcript Edit Position</th>
+                <th>lncRNA ID</th>
+                <th>Source</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for edit in select %}
+            <tr>
+                <td><a href = "{% url 'fly:editingshow' edit.id %}">{{ edit.chromosome }}:{{ edit.chr_edit_pos|intcomma }}</a></td>
+                <td>{{ edit.trans_edit_pos|intcomma }}</td>
+                <td><a href="{% url 'fly:lncrnashow' edit.lncrna_info_id %}" id = "lncrna-ID-{{ edit.lncrna_info_id }}">{{ edit.lncrna_id }}</a></td>
+                <td id="resource-{{ edit.lncrna_info_id  }}">{{ edit.resource }}</td>
+            </tr>
+            <script type="text/javascript">
+                $(function(){
+                    var lncrnaID = '{{ edit.lncrna_id }}';
+                    var source = '{{ edit.resource }}';
+                    var lncrnaIDs = lncrnaID.split("/");
+                    var sources = source.split("/");
+                    $("#lncrna-ID-{{ edit.lncrna_info_id  }}").text(lncrnaIDs[0]);
+                    $("#resource-{{ edit.lncrna_info_id  }}").text(sources[0]);
+                });
+            </script>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

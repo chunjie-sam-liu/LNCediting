@@ -1,0 +1,44 @@
+{% extends "human/base.html" %}
+{%  load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="bs-docs-section">
+    <h2 id="overview" class="page-header">Download</h2>
+    <div class="panel panel-primary">
+        <div class="panel-collapse collapse in" id="collapseZero" role="tabpanel" aria-labelledby="headingZero">
+            <div class="panel-body">
+                <table class="table table-hover table-bordered">
+                    <tr >
+                        <th>lncRNA Information</th>
+                        <td style="color:red" ><a href="{% static 'human/download/table1_lncrna_info' %}"  target="_blank" >lncRNA Information</a></td>
+                    </tr>
+                    <tr >
+                        <th>Editing Sequence </th>
+                        <td style="color:red" ><a href="{% static 'human/download/table2_edit_sequence' %}"  target="_blank" >Editing sequence</a></td>
+                    </tr>
+                    <tr >
+                        <th>Editing Sites</th>
+                        <td style="color:red" ><a href="{% static 'human/download/table3_edit_site_info'%}" target="_blank" >Editing Sites</a></td>
+                    </tr>
+                    <tr >
+                        <th>Basic miRNA Information</th>
+                        <td style="color:red" ><a href="{% static 'human/download/table4_mirna_info'%}" target="_blank" >Basic miRNA Information</a></td>
+                    </tr>
+                    <tr >
+                        <th>miRNA Expression from TCGA</th>
+                        <td style="color:red" ><a href="{% static 'human/download/table5_mirna_profile' %}"  target="_blank" >miRNA Expression from TCGA</a></td>
+                    </tr>
+                    <tr >
+                        <th>lncRNA Gain by editing</th>
+                        <td><a href="{% static 'human/download/table7_function_gain' %}" target="_blank">lncRNA Gain by editing</a></td>
+                    </tr>
+                    <tr >
+                        <th>lncRNA Loss by editing</th>
+                        <td><a href="{% static 'human/download/table8_function_loss' %}" target="_blank">lncRNA Loss by editing</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

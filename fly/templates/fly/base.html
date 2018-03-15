@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html >
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,user-scalable=no">
+        {# load css file#}
+{#        <link rel="stylesheet" type = "text/css" href="{% static 'fly/css/bootstrap.min.css' %}">#}
+        <link rel="stylesheet" type = "text/css" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'fly/css/docs.min.css' %}">
+        <link rel="stylesheet" type = "text/css" href="{% static 'fly/css/bootstrap-theme.min.css' %}">
+        {# tablesorter pager #}
+        <link rel="stylesheet" type="text/css" href="{% static 'fly/css/jquery.tablesorter.pager.min.css' %}">
+        {# load main css #}
+        <link rel="stylesheet" type = "text/css" href="{% static 'fly/css/main.css' %}">
+
+        {#  load jquery and bootstrap js #}
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="{% static 'fly/js/bootstrap.min.js' %}"></script>
+        {# load tablesorter  #}
+        <script src="{% static 'fly/js/jquery.tablesorter.min.js' %}"></script>
+        <script src="{% static 'fly/js/jquery.tablesorter.widgets.min.js' %}"></script>
+        <script src="{% static 'fly/js/jquery.tablesorter.pager.min.js' %}"></script>
+        {# compatible to IE #}
+        <script src="{% static 'fly/js/respond.min.js' %}"></script>
+        <script src="{% static 'fly/js/html5shiv.js' %}"></script>
+        {#icon  #}
+        <link rel="icon" href="{% static 'fly/images/Drosophila_melanogaster.jpg' %}">
+
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+        {% block extra_head %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <div class="container"><a href="{% url 'human:index' %}"><img src="{% static 'fly/images/editingLogo.jpg' %}" alt="editingLogo" id="logo-banner" width="100%" ></a></div>
+        {% include "fly/header.html" %}
+
+        <div class="container bs-docs-container" >
+
+            {% block content %}{% endblock %}
+
+        </div>
+        {% include "fly/footer.html" %}
+        {# load main js #}
+        <script src="{% static 'fly/js/main.js' %}"></script>
+        <script src="{% static 'fly/js/docs.min.js' %}"></script>
+
+    </body>
+</html>

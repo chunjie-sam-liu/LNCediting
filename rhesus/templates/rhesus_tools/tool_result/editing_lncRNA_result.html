@@ -1,0 +1,30 @@
+{% extends "rhesus/base.html" %}
+{% load staticfiles %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="bs-docs-section">
+        <h3 id="overview" class="page-header">Editing impact on structure of lncRNA</h3>
+        <div id="wild-structure" >
+            <div style="text-align: center">
+                <h4>Structure of unedited lncRNA </h4>
+                <img src="{% static 'rhesus/tool_structure/SEQ1.png' %}" /><br/>
+            </div>
+            <p>
+                <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" data-toggle="popover" data-content="The character “(“ and “)” correspond to the 5’ base and the 3’ base in the base-pair, respectively, while “.” Denotes an unpaired base" data-original-title="Notice" data-trigger="hover" data-placement="bottom"></span>
+                </button>&nbsp;&nbsp;{{ fe_wild_notation }}</p>
+            <p><strong>Minimum free energy (kcal/mol):</strong> {{ fe_wild_energy }}</p>
+        </div>
+        <hr style="width;98%; border:2px solid red;">
+        <div id="edit-structure" >
+            <div style="text-align: center;">
+                <h4>Structure of edited lncRNA</h4>
+                <img src="{% static 'rhesus/tool_structure/SEQ2.png' %}">
+            </div>
+            <p><button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" data-toggle="popover" data-content="The character “(“ and “)” correspond to the 5’ base and the 3’ base in the base-pair, respectively, while “.” Denotes an unpaired base" data-original-title="Notice" data-trigger="hover" data-placement="bottom"></span>
+                </button>&nbsp;&nbsp;{{ fe_editing_notation }}</p>
+            <p><strong>Minimum free energy (kcal/mol):</strong> {{ fe_editing_energy }}</p>
+        </div>
+    </div>
+{% endblock %}

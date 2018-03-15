@@ -1,0 +1,29 @@
+{% load humanize %}
+{% if select %}
+    <table class="table table-bordered table-hover table-condensed tablesorter tablesorter-bootstrap" role = "grid">
+        <thead>
+            <tr class = "active" role="row">
+                <th width="20%">lncRNA ID</th>
+                <th width="20%">Source</th>
+                <th>Alias</th>
+                <th>Chr</th>
+                <th>Editing<br />Number</th>
+                <th>Gain<span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="The number of gain miRNA:lncRNA interactions on this lncRNA" data-trigger="hover" data-placement="bottom"></span></th>
+                <th>Loss<span class="glyphicon glyphicon-question-sign" data-toggle="popover" data-content="The number of loss miRNA:lncRNA interactions on this lncRNA" data-trigger="hover" data-placement="bottom"></span></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lncrna in select %}
+            <tr>
+                <td ><strong><a href="{% url 'human:lncrnashow' lncrna.id %}" class="lncrna-ID-{{ lncrna.id }}">{{ lncrna.lncrna_id }}</a></strong></td>
+                <td class="resource-{{ lncrna.id  }}">{{ lncrna.combined_resource }}</td>
+                <td>{{ lncrna.resource_set.all.0.resource|default:"-" }}</td>
+                <td>{{ lncrna.chromosome }}</td>
+                <td>{{ lncrna.edit_num }}</td>
+                <td>{{ lncrna.gain_num|default:0 }}</td>
+                <td>{{ lncrna.loss_num|default:0 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

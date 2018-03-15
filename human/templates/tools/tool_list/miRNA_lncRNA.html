@@ -1,0 +1,33 @@
+<div class="panel panel-success" id="gene">
+	<div class="panel-heading" role="tab" id="headingOne">
+		<h4 class="panel-title">
+				Editing in lncRNA impacts on miRNA:lncRNA interaction
+		</h4>
+	</div>
+
+	<div class="panel-body">
+		<p style="font-size:16px;text-align: justify">
+			Predict the loss and gain of miRNA:lncRNA binding sites influenced by an <span style="color: red">A&rarr;I</span> editing in the lncRNA sequence.
+		</p>
+
+		<form name="online" action="{% url 'human:tinteraction' %}" method="get">
+            {% csrf_token %}
+            <div class="form-group has-error">
+				<label class="control-label" style="font-size: 16px;color:#BD4700;margin:5px 0;">Input unedited lncRNA sequence :</label>
+				<textarea  rows="8" class="form-control" name="wild" data-required='true'>TTTGACCTTCAGCAAGGTCAAAGGGAGTCCGAACTAGTCTCAGGCTTCAACATCGAATACGCCGCAGGCCCCTTCGCCCTATTCTTCATAGCCGAATACACAAACATTATTATAATAAACACCCTCACCACTACAATCTTCCTAGGAACAACATATAACGCACTCTCCCCTGAACTCTACACAACATATTTTGTCACCAAGACCCTACTTCTGACCTCCCTGTTCTTATGAATTCGAACAGCATACCCCCGATTCCGCTACGACCAACTCATACACCTCCTATGAAAAAACTTCCTACCACTCACCCTAGCATTACTTATATGATATGTCTCCATACCCATTACAATCTCCAGCATTCCCCCTCAAACCTAA</textarea>
+			</div>
+
+            <div class="form-group has-error">
+                <div class="row">
+                    <label class="col-md-5" style="font-size:16px; color:#BD4700;margin:5px 0;">Input relative editing site:</label>
+                    <div class="col-md-4">
+                        <input name="position" class="form-control" type="text" value="{{ position|default:'26' }}" pattern="\d+" />
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" value="Submit" name="submit" class="btn btn-success submit-check">Submit</button>
+                    </div>
+                </div>
+            </div>
+		</form>
+	</div>
+</div>

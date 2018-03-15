@@ -1,0 +1,69 @@
+{% load humanize %}
+<div class="bs-docs-section">
+    <div class="bs-callout bs-callout-info">
+    <h4>Basic information of miRNA</h4>
+    <dl class="dl-horizontal" >
+        <dt>miRNA:</dt>
+        <dd><a href="http://mirbase.org/cgi-bin/mature.pl?mature_acc={{ mirnaInfo.accession }}" target="_blank">{{ mirnaInfo.mirna_id }}</a></dd>
+        <dt>Accession:</dt>
+        <dd><a href="http://mirbase.org/cgi-bin/mature.pl?mature_acc={{ mirnaInfo.accession }}" target="_blank">{{ mirnaInfo.accession }}</a></dd>
+        <dt>Coordinates:</dt>
+        <dd>{{ mirnaInfo.chromosome }}:{{ mirnaInfo.start }}-{{ mirnaInfo.end }}[{{ mirnaInfo.strand }}]</dd>
+        <dt>Mature Sequence:</dt>
+        <dd>{{ mirnaInfo.mature_sequence }}</dd>
+        {% if averageProfile %}
+        <dt>Average Expression:</dt>
+        <dd>{{ averageProfile|floatformat:2 }}</dd>
+        {% endif %}
+        {% if mirnaProfileHeight %}
+        <dt>Profile&nbsp;
+            <span class="glyphicon glyphicon-hand-right" data-toggle="popover" data-content="Expression data is from TCGA(RPM);Click to show abbreviation" data-original-title="Search Notice" data-trigger="hover" data-placement="bottom"></span>&nbsp;
+            <button data-toggle="collapse" data-target="#abbr" aria-expanded="true" aria-controls="abbr" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-menu-hamburger red"></span></button>&nbsp;:
+        </dt>
+        <dd>
+            {% for ex in mirnaProfileHeight %}
+                <div class="expression" data-toggle="tooltip" data-triggle="hover" data-placement="bottom" data-original-title="sample:{{ ex.name|upper }}; expression:{{ ex.expression }}" style="background-color: rgb({{ ex.r }},{{ ex.g }},{{ ex.b }})"></div>
+            {% endfor %}
+        </dd>
+        {% endif %}
+        <dt>Precursor:</dt>
+        <dd>{{ mirnaInfo.pre_mirna_id }}</dd>
+        <dt>Pre-miR Coordinates:</dt>
+        <dd>{{ mirnaInfo.chromosome }}:{{ mirnaInfo.pre_start }}-{{ mirnaInfo.pre_end }}[{{ mirnaInfo.strand }}]</dd>
+        <dt>Pre-miR sequence</dt>
+        <dd >{{ mirnaInfo.pre_sequence}}</dd>
+    </dl>
+    <div class="panel panel-primary collapse " id="abbr">
+        <div class="panel-body">
+            <strong>ACC:</strong>Adrenocortical_carcinoma<br />
+            <strong>BLCA:</strong>Bladder_Urothelial_Carcinoma<br />
+            <strong>BRCA:</strong>Breast_invasive_carcinoma<br />
+            <strong>CESC:</strong>Cervical_squamous_cell_carcinoma_and_endocervical_adenocarcinoma<br />
+            <strong>COAD:</strong>Colon_adenocarcinoma<br />
+            <strong>DLBC:</strong>Lymphoid_Neoplasm_Diffuse_Large_B-cell_Lymphoma<br />
+            <strong>ESCA:</strong>Esophageal_carcinoma<br />
+            <strong>HNSC:</strong>Head_and_Neck_squamous_cell_carcinoma<br />
+            <strong>KICH:</strong>Kidney_Chromophobe<br />
+            <strong>KIRC:</strong>Kidney_renal_clear_cell_carcinoma<br />
+            <strong>KIRP:</strong>Kidney_renal_papillary_cell_carcinoma<br />
+            <strong>LAML:</strong>Acute_Myeloid_Leukemia<br />
+            <strong>LGG:</strong>Brain_Lower_Grade_Glioma<br />
+            <strong>LIHC:</strong>Liver_hepatocellular_carcinoma<br />
+            <strong>LUAD:</strong>Lung_adenocarcinoma<br />
+            <strong>LUSC:</strong>Lung_squamous_cell_carcinoma<br />
+            <strong>MESO:</strong>Mesothelioma<br />
+            <strong>OV:</strong>Ovarian_serous_cystadenocarcinoma<br />
+            <strong>PAAD:</strong>Pancreatic_adenocarcinoma<br />
+            <strong>PCPG:</strong>Pheochromocytoma_and_Paraganglioma<br />
+            <strong>PRAD:</strong>Prostate_adenocarcinoma<br />
+            <strong>READ:</strong>Rectum_adenocarcinoma<br />
+            <strong>SARC:</strong>Sarcoma<br />
+            <strong>SKCM:</strong>Skin_Cutaneous_Melanoma<br />
+            <strong>STAD:</strong>Stomach_adenocarcinoma<br />
+            <strong>THCA:</strong>Thyroid_carcinoma<br />
+            <strong>UCEC:</strong>Uterine_Corpus_Endometrial_Carcinoma<br />
+            <strong>UCS:</strong>Uterine_Carcinosarcoma<br />
+        </div>
+    </div>
+    </div>
+</div>

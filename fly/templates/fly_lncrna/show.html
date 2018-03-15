@@ -1,0 +1,8 @@
+{% extends "fly/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    {% include 'fly_lncrna/show/basic_information.html' %}
+    {% include 'fly_lncrna/show/lncrna_editing.html' %}
+    {% include 'fly_lncrna/show/lncrna_gain.html' %}
+    {% include 'fly_lncrna/show/lncrna_loss.html' %}
+{% endblock %}

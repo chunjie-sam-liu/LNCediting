@@ -1,0 +1,7 @@
+{% extends "human/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    {% include 'mirna/show/basic_information.html' %}
+    {% include 'mirna/show/mirna_gain.html' %}
+    {% include 'mirna/show/mirna_loss.html' %}
+{% endblock %}

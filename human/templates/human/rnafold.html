@@ -1,0 +1,23 @@
+{% load staticfiles %}
+{% load humanize %}
+<div class="modal-header">
+    <button class="close" data-dismiss="modal" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4>Unedited Sequence: {{ lncrnafold.lncrna_id }}<br />Edited Sequence: {{ editingfold.chromosome}}:{{ editingfold.chr_edit_pos }}</h4>
+</div>
+<div class="modal-body">
+    <div class="panel panel-success">
+        <div class="panel-heading">Unedited {{ lncrnafold.lncrna_id  }}</div>
+        <div class="panel-body">
+            <img src="{% static 'human/structures/wild_png/10000_ss.ps.png' %}">
+        </div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading">{{ editingfold.chromosome}}:{{ editingfold.chr_edit_pos }}</div>
+        <div class="panel-body">
+            <img src="{% static 'human/structures/whole_editing_png/10000_ss.ps.png' %}">
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-info" data-dismiss="modal" type="button">Close</button>
+</div>

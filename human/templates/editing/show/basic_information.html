@@ -1,0 +1,78 @@
+{% load humanize %}
+<div class="bs-docs-section">
+    <div class="bs-callout bs-callout-info">
+        <h4 >Basic information of Editing: {{ editingRecord.chromosome }}:{{ editingRecord.chr_edit_pos|intcomma }}</h4>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Editing Position:</dt>
+                <dd>{{ editingRecord.chromosome }}:{{ editingRecord.chr_edit_pos|intcomma }}</dd>
+				{% if rep_cons %}
+				<dt style="margin-top:15px;">Repeat:</dt>
+				<dd style="margin-top:15px;">
+					<table class="table table-bordered table-hover table-condensed" style="width:500px">
+						<tbody>
+							<tr>
+								<td class="text-center">Alu Repeat</td>
+								<td class="text-center">Non-Alu Repeat</td>
+							</tr>
+							<tr>
+								<td class="text-center">
+								
+								{% if rep_cons.repeat == "Alu repeat" %}
+									<span class="glyphicon glyphicon-ok glyphicon-color"></span>
+								{% else %}
+									<span class="glyphicon glyphicon-remove glyphicon-color"></span>
+								{% endif %}
+								</td>
+								<td class="text-center">
+								{% if rep_cons.repeat == "Non-Alu repeat" %}
+									<span class="glyphicon glyphicon-ok glyphicon-color"></span>
+								{% else %}
+									<span class="glyphicon glyphicon-remove glyphicon-color"></span>
+								{% endif %}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</dd>
+				<dt>Conservation:</dt>
+				<dd>
+					<table class="table table-bordered table-hover table-condensed" style="width:500px">
+						<tbody>
+							<tr>
+								<td class="text-center">Chimpanzee</td>
+								<td class="text-center">Rhesus</td>
+								<td class="text-center">Mouse</td>
+							</tr>
+							<tr>
+								<td class="text-center">
+								{% if rep_cons.chimpanzee %}
+									{{ rep_cons.chimpanzee }}
+								{% else %}
+								<span class="glyphicon glyphicon-remove glyphicon-color"></span>
+								{% endif %}
+								</td>
+								<td class="text-center">
+								{% if rep_cons.rhesus %}
+									{{ rep_cons.rhesus }}
+								{% else %}
+								<span class="glyphicon glyphicon-remove glyphicon-color"></span>
+								{% endif %}
+								</td>
+								<td class="text-center">
+								{% if rep_cons.mouse %}
+									{{ rep_cons.mouse }}
+								{% else %}
+								<span class="glyphicon glyphicon-remove glyphicon-color"></span>
+								{% endif %}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</dd>
+				{% endif %}
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1"><div class="modal-dialog"><div class="modal-content"></div></div></div>
