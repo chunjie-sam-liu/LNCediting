@@ -1,7 +1,7 @@
 # LNCediting
 
 > [LNCediting: a database for functional effects of RNA editing in lncRNAs.](http://nar.oxfordjournals.org/content/early/2016/09/19/nar.gkw835.full?keytype=ref&ijkey=md3tl5z8V0R66D9)
-Jing Gong <sup>†</sup>, Chunjie Liu <sup>†</sup>, Wei Liu, Yu Xiang, Lixia Diao, An-Yuan Guo <sup>\*</sup> and Leng Han <sup>\*</sup>. Nucl. Acids Res. (2016). doi: 10.1093/nar/gkw835.
+  Jing Gong <sup>†</sup>, Chunjie Liu <sup>†</sup>, Wei Liu, Yu Xiang, Lixia Diao, An-Yuan Guo <sup>\*</sup> and Leng Han <sup>\*</sup>. Nucl. Acids Res. (2016). doi: 10.1093/nar/gkw835.
 
 # Introduction
 
